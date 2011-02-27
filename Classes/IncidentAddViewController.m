@@ -83,7 +83,12 @@
 	result = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
 	NSString *string = [[[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding] autorelease];
 	LogDebug (@"%@", string);
-
+	if (![string isEqualToString:@"Created"]) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de soumettre l'incident" 
+													   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
+		return;
+	}
 	[self.navigationController dismissModalViewControllerAnimated:YES];
 }
 

@@ -58,7 +58,7 @@
 
 		return tempArray;
 	}
-	return nil;
+	return incidentsList;
 }
 
 // 
@@ -75,6 +75,13 @@
 	// Load the incident from the website
 	self.incidentsList = [self allocIncidentsArray];
 	[self.tableView reloadData];
+	// If the result is still 0, there is an error.
+	if (self.incidentsList == nil) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de récupérer la liste des incidents" 
+													   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
+		return;
+	}
 }
 
 #pragma mark -

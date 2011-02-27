@@ -72,6 +72,8 @@
 	// Trigger the request with correct parameters
 	NSNumber *numberOfPlus = [self voteForIncident:plus];
 	
+	[self checkForError:numberOfPlus];
+	
 	// Update cached value
 	[incident setValue:numberOfPlus forKey:VOTE_PLUS];
 	LogDebug(@"Value %@", [incident objectForKey:VOTE_PLUS]);
@@ -86,6 +88,9 @@
 	LogDebug(@"Minus button pressed");
 	NSString *minus = @"minus";
 	NSNumber *numberOfMinus = [self voteForIncident:minus];
+	
+	[self checkForError:numberOfMinus];
+	
 	[incident setValue:numberOfMinus forKey:VOTE_MINUS];
 	LogDebug(@"Value %@", [incident objectForKey:VOTE_MINUS]);
 	[minusButton setTitle:[NSString stringWithFormat:@"-1\t(%@)", [incident objectForKey:VOTE_MINUS]]
@@ -97,12 +102,24 @@
 	LogDebug(@"Minus button pressed");
 	NSString *end = @"end";
 	NSNumber *numberOfEnd = [self voteForIncident:end];
+	
+	[self checkForError:numberOfEnd];
+	
 	[incident setValue:numberOfEnd forKey:VOTE_ENDED];
 	LogDebug(@"Value %@", [incident objectForKey:VOTE_ENDED]);
 	[endButton setTitle:[NSString stringWithFormat:@"Incident terminé\t(%@)", [incident objectForKey:VOTE_ENDED]]
 				 forState:UIControlStateNormal];
 }
 
+- (void)checkForError:(NSNumber *) numberOfVotes {
+	// If the result is still 0, there is an error.
+	if ([numberOfVotes intValue] == 0) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de soumettre le vote" 
+													   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
+		return;
+	}
+}
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];   
