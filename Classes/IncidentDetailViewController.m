@@ -8,68 +8,117 @@
 
 #import "IncidentDetailViewController.h"
 
-
 @implementation IncidentDetailViewController
 
-@synthesize	incident, dateTextField, lineTextField, reasonTextView;
+@synthesize	incident, dateTextField, reasonTextView, plusButton, minusButton, endButton;
 
 - (void) viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	
+	// Format the dates to be nicely displayed
 	NSDateFormatter *dateFormater = [[[NSDateFormatter alloc] init] autorelease];
 	[dateFormater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-	NSDate *date = [dateFormater dateFromString:[incident objectForKey:@"time"]];
-	[dateFormater setDateFormat:@"dd/MM/yyyy HH:mm"];
+	NSDate *date = [dateFormater dateFromString:[incident objectForKey:LAST_MODIFIED_TIME]];
+	[dateFormater setDateFormat:@"dd/MM HH:mm"];
 	
+	// Put the transport line as the title of the dialog
+	self.title = [[NSString alloc] initWithFormat:@"%@", [incident objectForKey:LINE]];
 	dateTextField.text = [dateFormater stringFromDate:date];
-	lineTextField.text = [[incident objectForKey:@"line"] objectForKey:@"name"];
-	reasonTextView.text = [incident objectForKey:@"reason"];
+	reasonTextView.text = [incident objectForKey:REASON];
+	[plusButton setTitle:[NSString stringWithFormat:@"+1\t(%@)", [incident objectForKey:VOTE_PLUS]] 
+				forState:UIControlStateNormal];
+	[minusButton setTitle:[NSString stringWithFormat:@"-1\t(%@)", [incident objectForKey:VOTE_MINUS]]
+				 forState:UIControlStateNormal];
+	[endButton setTitle:[NSString stringWithFormat:@"Incident terminé\t(%@)", [incident objectForKey:VOTE_ENDED]]
+				 forState:UIControlStateNormal];
 	
 }
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
-}
-*/
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (NSNumber *)voteForIncident:(NSString *)type {
+	NSMutableURLRequest *theRequest;
+	NSURLResponse *theResponse;
+	NSData *result;
+	NSError *error = nil;
+	NSURL *URL;
+	
+	// Build the URL depending on the button pressed and on the incident ID
+	URL = [NSURL URLWithString:[[NSString alloc] 
+								initWithFormat:@"http://incidents-transports.alwaysdata.net/incident/action/%@/%@", 
+								[incident objectForKey:UID],
+								type]];
+	LogDebug (@"%@", URL);
+	
+	// Build the GET request
+	theRequest = [NSMutableURLRequest requestWithURL:URL
+										 cachePolicy:NSURLRequestUseProtocolCachePolicy
+									 timeoutInterval:60.0];
+	[theRequest setHTTPMethod:@"GET"];
+	
+	// Execute and build a string from the result
+	result = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
+	NSString *string = [[[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding] autorelease];
+	LogDebug (@"%@", string);
+	
+	// Return the value assigned by the server
+	return [NSNumber numberWithInteger:[string integerValue]];
 }
-*/
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+// Vote for incident existing +1
+- (void)plusButtonPressed:(id)sender {
+	LogDebug(@"Plus button pressed");
+	NSString *plus = @"plus";
+	
+	// Trigger the request with correct parameters
+	NSNumber *numberOfPlus = [self voteForIncident:plus];
+	
+	// Update cached value
+	[incident setValue:numberOfPlus forKey:VOTE_PLUS];
+	LogDebug(@"Value %@", [incident objectForKey:VOTE_PLUS]);
+	
+	// Update 
+	[plusButton setTitle:[NSString stringWithFormat:@"+1\t(%@)", [incident objectForKey:VOTE_PLUS]]
+				 forState:UIControlStateNormal];
 }
-*/
+
+// Vote for incident not existing -1
+- (void)minusButtonPressed:(id)sender {
+	LogDebug(@"Minus button pressed");
+	NSString *minus = @"minus";
+	NSNumber *numberOfMinus = [self voteForIncident:minus];
+	[incident setValue:numberOfMinus forKey:VOTE_MINUS];
+	LogDebug(@"Value %@", [incident objectForKey:VOTE_MINUS]);
+	[minusButton setTitle:[NSString stringWithFormat:@"-1\t(%@)", [incident objectForKey:VOTE_MINUS]]
+				 forState:UIControlStateNormal];
+}
+
+// Vote for incident end
+- (void)endButtonPressed:(id)sender {
+	LogDebug(@"Minus button pressed");
+	NSString *end = @"end";
+	NSNumber *numberOfEnd = [self voteForIncident:end];
+	[incident setValue:numberOfEnd forKey:VOTE_ENDED];
+	LogDebug(@"Value %@", [incident objectForKey:VOTE_ENDED]);
+	[endButton setTitle:[NSString stringWithFormat:@"Incident terminé\t(%@)", [incident objectForKey:VOTE_ENDED]]
+				 forState:UIControlStateNormal];
+}
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc. that aren't in use.
+    [super didReceiveMemoryWarning];   
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 
 - (void)dealloc {
     [super dealloc];
 	[dateTextField release];
-	[lineTextField release];
 	[reasonTextView release];
+	[plusButton release];
+	[minusButton release];
+	[endButton release];
 	[incident release];
 }
 

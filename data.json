@@ -1,0 +1,22 @@
+[
+{ "status": "En cours...", "vote_plus": 1, "uid": 1, "vote_ended": 1, "reason": "1 Test reason", "vote_minus": 1, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 1"},
+{ "status": "En cours...", "vote_plus": 2, "uid": 2, "vote_ended": 2, "reason": "2 Test reason", "vote_minus": 2, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 2"},
+{ "status": "En cours...", "vote_plus": 3, "uid": 3, "vote_ended": 3, "reason": "3 Test reason", "vote_minus": 3, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 3"},
+{ "status": "En cours...", "vote_plus": 4, "uid": 4, "vote_ended": 4, "reason": "4 Test reason", "vote_minus": 4, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 4"},
+{ "status": "En cours...", "vote_plus": 5, "uid": 5, "vote_ended": 5, "reason": "5 Test reason", "vote_minus": 5, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 5"},
+{ "status": "En cours...", "vote_plus": 6, "uid": 6, "vote_ended": 6, "reason": "6 Test reason", "vote_minus": 6, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 6"},
+{ "status": "En cours...", "vote_plus": 7, "uid": 7, "vote_ended": 7, "reason": "7 Test reason", "vote_minus": 7, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 7"},
+{ "status": "En cours...", "vote_plus": 8, "uid": 8, "vote_ended": 8, "reason": "8 Test reason", "vote_minus": 8, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 8"},
+{ "status": "En cours...", "vote_plus": 9, "uid": 9, "vote_ended": 9, "reason": "9 Test reason", "vote_minus": 9, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 9"},
+{ "status": "En cours...", "vote_plus": 10, "uid": 10, "vote_ended": 10, "reason": "10 Test reason", "vote_minus": 10, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 10"},
+{ "status": "En cours...", "vote_plus": 11, "uid": 11, "vote_ended": 11, "reason": "11 Test reason", "vote_minus": 11, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 11"},
+{ "status": "En cours...", "vote_plus": 12, "uid": 12, "vote_ended": 12, "reason": "12 Test reason", "vote_minus": 12, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 12"},
+{ "status": "En cours...", "vote_plus": 13, "uid": 13, "vote_ended": 13, "reason": "13 Test reason", "vote_minus": 13, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 13"},
+{ "status": "En cours...", "vote_plus": 14, "uid": 14, "vote_ended": 14, "reason": "14 Test reason", "vote_minus": 14, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 14"},
+{ "status": "En cours...", "vote_plus": 15, "uid": 15, "vote_ended": 15, "reason": "15 Test reason", "vote_minus": 15, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 15"},
+{ "status": "En cours...", "vote_plus": 16, "uid": 16, "vote_ended": 16, "reason": "16 Test reason", "vote_minus": 16, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 16"},
+{ "status": "En cours...", "vote_plus": 17, "uid": 17, "vote_ended": 17, "reason": "17 Test reason", "vote_minus": 17, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 17"},
+{ "status": "En cours...", "vote_plus": 18, "uid": 18, "vote_ended": 18, "reason": "18 Test reason", "vote_minus": 18, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 18"},
+{ "status": "En cours...", "vote_plus": 19, "uid": 19, "vote_ended": 19, "reason": "19 Test reason", "vote_minus": 19, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 19"},
+{ "status": "En cours...", "vote_plus": 20, "uid": 20, "vote_ended": 20, "reason": "20 Test reason", "vote_minus": 20, "last_modified_time": "2011-02-25 19:25:11", "line": "Metro 20"}
+]

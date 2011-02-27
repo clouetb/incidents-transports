@@ -5,88 +5,74 @@
 //  Created by Benoît Clouet on 25/02/11.
 //  Copyright 2011 Myself. All rights reserved.
 //
-
 #import "RootViewController.h"
-#import "JSON.h"
-#import "IncidentDetailViewController.h"
 
 @implementation RootViewController
 
-@synthesize incidentsList, addButtonItem;
+@synthesize incidentsList, addButtonItem, refreshButtonItem;
 #pragma mark -
 #pragma mark View lifecycle
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	self.navigationItem.rightBarButtonItem = self.addButtonItem;
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://incidents-ratp.com/api/incident"]
-										cachePolicy:NSURLRequestUseProtocolCachePolicy
-														  timeoutInterval:60.0];
+// Fetch and allocs an array of incidents from the website
+- (NSMutableArray *)allocIncidentsArray {
+	NSMutableURLRequest *theRequest;
+	NSURLResponse *theResponse;
+	NSData *result;
+	NSString *string;
+	NSError *error;
+	SBJsonParser *json = [SBJsonParser new];
+	NSMutableArray *tempArray;
+	
+	// Build the GET request
+	theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://incidents-transports.alwaysdata.net/api/incidents.json/all"]
+							  cachePolicy:NSURLRequestUseProtocolCachePolicy
+						  timeoutInterval:60.0];
 	[theRequest setHTTPMethod:@"GET"];
 	
-	NSURLResponse *theResponse;
+	// Execute and build a string from the result
+	result = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
+	//string = [[[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding] autorelease];
+	string = [[NSString alloc]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"data" ofType:@"json"] encoding:NSUTF8StringEncoding error:&error];
 
+	LogDebug(@"%@", string);
 
-	NSError *error;
-	NSData *result = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
-
-	//NSString *string = @"[{\"reason\": \"AAA\", \"line\": {\"name\": \"RER B\"}, \"time\": \"2011-02-25 08:05:01\"}, {\"reason\": \"BBB\", \"line\": {\"name\": \"RER B\"}, \"time\": \"2011-02-25 11:08:16\"}, {\"reason\": \"CCC\", \"line\": {\"name\": \"Metro 13\"},\"time\": \"2011-02-25 11:11:48\"}, {\"reason\": \"DDD\", \"line\": {\"name\": \"Metro 7\"},	\"time\": \"2011-02-25 22:17:20\"}, {	\"reason\": \"EEE\", 	\"line\": {	\"name\": \"RER C\"	}, 	\"time\": \"2011-02-25 23:53:24\"    }]";	
-	NSString *string = [[[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding] autorelease];
-	NSLog(@"%@", string);
+	// Parse the JSon string
+	tempArray = [[NSMutableArray alloc] initWithArray:[json objectWithString:string error:&error] copyItems:YES];
 	
+	// Check whether the parsing went smoothly
+	if (tempArray == nil) {
 
-	SBJsonParser *json = [SBJsonParser new];
-	
-	incidentsList = [[NSMutableArray alloc] initWithArray:[json objectWithString:string error:&error] copyItems:YES];
-	
-	if (incidentsList == nil) {
-		
-		NSLog(@"Erreur lors de la lecture du code JSON (%@).", [error localizedDescription]);
-		
+		LogError(@"Erreur lors de la lecture du code JSON (%s).", [error localizedDescription]);
+
 	} else {
-		
-		for (NSDictionary *incident in incidentsList) {
-			
-			NSLog(@"\tTime=%@ et Line=%@\nReason=%@\n", [incident objectForKey:@"time" ],
-				  [[incident objectForKey:@"line"] objectForKey:@"name"], 
-				  [incident objectForKey:@"reason" ]);
-			
+
+		for (NSDictionary *incident in tempArray) {
+			LogDebug(@"\tTime=%@ et Line=%@\nReason=%@\n",
+				  [incident objectForKey:LAST_MODIFIED_TIME],
+				  [incident objectForKey:LINE], 
+				  [incident objectForKey:REASON]);
 		}
-		
+
+		return tempArray;
 	}
-
+	return nil;
 }
 
+// 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+	// Put a small button with a small + sign
+	self.navigationItem.rightBarButtonItem = self.addButtonItem;
+	self.navigationItem.leftBarButtonItem = self.refreshButtonItem;
+	// Load the incident from the website
+	self.incidentsList = [self allocIncidentsArray];
+}
 
-/*
+// Reload data when it can have been modified
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+	[super viewWillAppear:animated];
+	[self.tableView reloadData];
 }
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
-
-/*
- // Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	// Return YES for supported orientations.
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
- */
-
 
 #pragma mark -
 #pragma mark Table view data source
@@ -105,80 +91,70 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+	// Get the current incident
+	NSDictionary *incident = [incidentsList objectAtIndex:indexPath.row];
+	
+	// Format date & time properly
+	NSDateFormatter *dateFormater = [[[NSDateFormatter alloc] init] autorelease];
+	[dateFormater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+	NSDate *date = [dateFormater dateFromString:[incident objectForKey:LAST_MODIFIED_TIME]];
+	[dateFormater setDateFormat:@"dd/MM HH:mm"];
+
+	// Build a new cell if needed
     static NSString *CellIdentifier = @"Cell";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
+
+	// Build a text string to display under the form : 25/02	Ligne 7
+    NSString *incidentText = [[NSString alloc] initWithFormat:@"%@ \t %@", [dateFormater stringFromDate:date], [incident objectForKey:LINE]];
 	
-	NSDictionary *incident = [incidentsList objectAtIndex:indexPath.row];
-	
-	NSDateFormatter *dateFormater = [[[NSDateFormatter alloc] init] autorelease];
-	[dateFormater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-	NSDate *date = [dateFormater dateFromString:[incident objectForKey:@"time"]];
-	[dateFormater setDateFormat:@"dd/MM HH:mm"];
-	
-    NSString *incidentText = [[NSString alloc] initWithFormat:@"%@ \t %@", [dateFormater stringFromDate:date], [[incident objectForKey:@"line"] objectForKey:@"name"]];
+	// Put the string onto the cell
 	cell.textLabel.text = incidentText;
+	
+	// Put a disclosure indicator at the right of the cell
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	
     return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 #pragma mark -
 #pragma mark Table view delegate
-
+// Prepare for the display of an incident
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	// Init the detail view
     IncidentDetailViewController *detailViewController = [[IncidentDetailViewController alloc] initWithNibName:@"IncidentDetailViewController" bundle:nil];
-	detailViewController.incident = [incidentsList objectAtIndex:indexPath.row];
+	
+	// Get the data that are to be diplayed
+	detailViewController.incident = [[NSMutableDictionary alloc] initWithDictionary:[incidentsList objectAtIndex:indexPath.row] copyItems:YES];
+	
+	// Push the view of one incident
 	[self.navigationController pushViewController:detailViewController animated:YES];
+	
+	// Release when we are over
 	[detailViewController release];
 }
 
+// Prepare for the addition of a new incident
 - (void)addButtonPressed:(id)sender {
-	NSLog(@"Button pressed");
+	LogDebug(@"Add button pressed");
+	// Create the add view dialog
+	IncidentAddViewController *addViewController = [[IncidentAddViewController alloc] initWithNibName:@"IncidentAddViewController" bundle:nil];
+	
+	// Bind the view dialog to a freshly created navigation controller
+	UINavigationController *addNavigationController = [[UINavigationController alloc] initWithRootViewController:addViewController];
+	
+	// Push the view of one incident
+	[self presentModalViewController:addNavigationController animated:YES];
+	
+	// Release when we are over
+	[addViewController release];
+	[addNavigationController release];
+}
+
+- (IBAction) refreshButtonPressed: (id)sender{
+	LogDebug(@"Add button pressed");
 }
 
 #pragma mark -
@@ -186,14 +162,11 @@
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc that aren't in use.
+    [super didReceiveMemoryWarning];    
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
+
 }
 
 
@@ -201,6 +174,7 @@
     [super dealloc];
 	[incidentsList release];
 	[addButtonItem release];
+	[refreshButtonItem release];
 }
 
 

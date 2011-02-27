@@ -15,6 +15,8 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		D9625325131971AC00BF99AF /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = D962530513196B5900BF99AF /* data.json */; };
+		D96255481319DA7600BF99AF /* transport-lines.plist in Resources */ = {isa = PBXBuildFile; fileRef = D96255471319DA7600BF99AF /* transport-lines.plist */; };
 		D9E2F88C13185ED300948F2F /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E2F87B13185ED200948F2F /* NSObject+JSON.m */; };
 		D9E2F88D13185ED300948F2F /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E2F87D13185ED200948F2F /* SBJsonParser.m */; };
 		D9E2F88E13185ED300948F2F /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E2F87F13185ED300948F2F /* SBJsonStreamParser.m */; };
@@ -26,6 +28,8 @@
 		D9E2F89413185ED300948F2F /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E2F88B13185ED300948F2F /* SBJsonWriter.m */; };
 		D9E2F9671318841800948F2F /* IncidentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E2F9651318841800948F2F /* IncidentDetailViewController.m */; };
 		D9E2F9681318841800948F2F /* IncidentDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9E2F9661318841800948F2F /* IncidentDetailViewController.xib */; };
+		D9E2FAA11319502900948F2F /* IncidentAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E2FA9F1319502900948F2F /* IncidentAddViewController.m */; };
+		D9E2FAA21319502900948F2F /* IncidentAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9E2FAA01319502900948F2F /* IncidentAddViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,11 @@
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iMLate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iMLate-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		D96252BC13195E5000BF99AF /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
+		D962530513196B5900BF99AF /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.json; sourceTree = "<group>"; };
+		D962530613196E5700BF99AF /* template.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = template.json; sourceTree = "<group>"; };
+		D962536113197A5000BF99AF /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		D96255471319DA7600BF99AF /* transport-lines.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "transport-lines.plist"; sourceTree = "<group>"; };
 		D9E2F87913185ED200948F2F /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		D9E2F87A13185ED200948F2F /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSON.h"; sourceTree = "<group>"; };
 		D9E2F87B13185ED200948F2F /* NSObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSON.m"; sourceTree = "<group>"; };
@@ -64,6 +73,9 @@
 		D9E2F9641318841800948F2F /* IncidentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncidentDetailViewController.h; sourceTree = "<group>"; };
 		D9E2F9651318841800948F2F /* IncidentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncidentDetailViewController.m; sourceTree = "<group>"; };
 		D9E2F9661318841800948F2F /* IncidentDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IncidentDetailViewController.xib; path = Classes/IncidentDetailViewController.xib; sourceTree = "<group>"; };
+		D9E2FA9E1319502900948F2F /* IncidentAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncidentAddViewController.h; sourceTree = "<group>"; };
+		D9E2FA9F1319502900948F2F /* IncidentAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncidentAddViewController.m; sourceTree = "<group>"; };
+		D9E2FAA01319502900948F2F /* IncidentAddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IncidentAddViewController.xib; path = Classes/IncidentAddViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +95,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D96253C313199C8100BF99AF /* REST */,
+				D9E2FA9E1319502900948F2F /* IncidentAddViewController.h */,
+				D9E2FA9F1319502900948F2F /* IncidentAddViewController.m */,
 				D9E2F9641318841800948F2F /* IncidentDetailViewController.h */,
 				D9E2F9651318841800948F2F /* IncidentDetailViewController.m */,
 				D9E2F87813185ED200948F2F /* JSON */,
@@ -119,6 +134,8 @@
 			children = (
 				28A0AAE50D9B0CCF005BE974 /* iMLate_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				D96252BC13195E5000BF99AF /* Logging.h */,
+				D962536113197A5000BF99AF /* Constants.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -126,10 +143,14 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D9E2FAA01319502900948F2F /* IncidentAddViewController.xib */,
 				D9E2F9661318841800948F2F /* IncidentDetailViewController.xib */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* iMLate-Info.plist */,
+				D962530513196B5900BF99AF /* data.json */,
+				D962530613196E5700BF99AF /* template.json */,
+				D96255471319DA7600BF99AF /* transport-lines.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -142,6 +163,13 @@
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D96253C313199C8100BF99AF /* REST */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = REST;
 			sourceTree = "<group>";
 		};
 		D9E2F87813185ED200948F2F /* JSON */ = {
@@ -221,9 +249,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9625325131971AC00BF99AF /* data.json in Resources */,
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
 				D9E2F9681318841800948F2F /* IncidentDetailViewController.xib in Resources */,
+				D9E2FAA21319502900948F2F /* IncidentAddViewController.xib in Resources */,
+				D96255481319DA7600BF99AF /* transport-lines.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +278,7 @@
 				D9E2F89313185ED300948F2F /* SBJsonTokeniser.m in Sources */,
 				D9E2F89413185ED300948F2F /* SBJsonWriter.m in Sources */,
 				D9E2F9671318841800948F2F /* IncidentDetailViewController.m in Sources */,
+				D9E2FAA11319502900948F2F /* IncidentAddViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +320,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};

@@ -11,13 +11,22 @@
 
 @interface IncidentDetailViewController : UIViewController {
 	IBOutlet UITextField *dateTextField;
-	IBOutlet UITextField *lineTextField;
 	IBOutlet UITextView *reasonTextView;
-	NSDictionary *incident;
+	IBOutlet UIButton *plusButton;
+	IBOutlet UIButton *minusButton;
+	IBOutlet UIButton *endButton;
+	NSMutableDictionary *incident;
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *dateTextField;
-@property (nonatomic, retain) IBOutlet UITextField *lineTextField;
 @property (nonatomic, retain) IBOutlet UITextView *reasonTextView;
-@property (nonatomic, retain) NSDictionary *incident;
+@property (nonatomic, retain) IBOutlet UIButton *plusButton;
+@property (nonatomic, retain) IBOutlet UIButton *minusButton;
+@property (nonatomic, retain) IBOutlet UIButton *endButton;
+@property (nonatomic, retain) NSMutableDictionary *incident;
+
+- (IBAction) minusButtonPressed: (id)sender;
+- (IBAction) plusButtonPressed: (id)sender;
+- (IBAction) endButtonPressed: (id)sender;
+
 @end
