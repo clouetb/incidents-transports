@@ -42,10 +42,11 @@
 	NSURL *URL;
 	
 	// Build the URL depending on the button pressed and on the incident ID
-	URL = [NSURL URLWithString:[[NSString alloc] 
-								initWithFormat:@"http://incidents-transports.alwaysdata.net/incident/action/%@/%@", 
-								[incident objectForKey:UID],
-								type]];
+	NSString *URLString = [[NSString alloc] initWithFormat:@"http://%@/incident/action/%@/%@", 
+			  [[[NSBundle mainBundle] infoDictionary] objectForKey:INCIDENT_SERVER_HOST],
+			  [incident objectForKey:UID],
+			  type];
+	URL = [NSURL URLWithString:URLString];
 	LogDebug (@"%@", URL);
 	
 	// Build the GET request
@@ -110,7 +111,6 @@
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
-
 
 - (void)dealloc {
     [super dealloc];

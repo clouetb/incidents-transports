@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface IncidentDetailViewController : UIViewController {
 	IBOutlet UITextField *dateTextField;
 	IBOutlet UITextView *reasonTextView;
@@ -28,5 +27,6 @@
 - (IBAction) minusButtonPressed: (id)sender;
 - (IBAction) plusButtonPressed: (id)sender;
 - (IBAction) endButtonPressed: (id)sender;
+- (void)drawBorder: (UIView *) view;
 
 @end

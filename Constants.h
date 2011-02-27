@@ -20,7 +20,14 @@
 #define UID @"uid"
 // Given reason of the incident if known : String
 #define REASON @"reason"
-// Transportation affected by the incident : String
+// Line name affected by the incident : String
+#define LINE_NAME @"line_name"
+// Line name affected by the incident : String
 #define LINE @"line"
 // Last time the incident was modified : date under the form yyyy-MM-dd HH:mm:ss
 #define LAST_MODIFIED_TIME @"last_modified_time"
+// Source for an incident (required for submission)
+#define SOURCE @"source"
+
+// Server Host Constant
+#define INCIDENT_SERVER_HOST @"incidentsServerHost"

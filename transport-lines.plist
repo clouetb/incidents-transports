@@ -46,8 +46,12 @@
 		<string>3</string>
 	</array>
 	<key>Bus</key>
-	<string></string>
+	<array>
+		<string>Précisez</string>
+	</array>
 	<key>Manuel</key>
-	<string></string>
+	<array>
+		<string>Saisissez</string>
+	</array>
 </dict>
 </plist>

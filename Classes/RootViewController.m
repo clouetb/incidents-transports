@@ -22,17 +22,20 @@
 	NSError *error;
 	SBJsonParser *json = [SBJsonParser new];
 	NSMutableArray *tempArray;
-	
+
+	LogDebug(@"Server %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:INCIDENT_SERVER_HOST]);
 	// Build the GET request
-	theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://incidents-transports.alwaysdata.net/api/incidents.json/all"]
-							  cachePolicy:NSURLRequestUseProtocolCachePolicy
+	NSString *URLString = [[NSString alloc] initWithFormat:@"http://%@/api/incidents.json/all", 
+			  [[[NSBundle mainBundle] infoDictionary] objectForKey:INCIDENT_SERVER_HOST]];
+	LogDebug(@"URL %@", URLString);
+	theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString] cachePolicy:NSURLRequestUseProtocolCachePolicy
 						  timeoutInterval:60.0];
 	[theRequest setHTTPMethod:@"GET"];
 	
 	// Execute and build a string from the result
 	result = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
-	//string = [[[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding] autorelease];
-	string = [[NSString alloc]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"data" ofType:@"json"] encoding:NSUTF8StringEncoding error:&error];
+	string = [[[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding] autorelease];
+	//string = [[NSString alloc]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"data" ofType:@"json"] encoding:NSUTF8StringEncoding error:&error];
 
 	LogDebug(@"%@", string);
 
@@ -64,13 +67,13 @@
 	// Put a small button with a small + sign
 	self.navigationItem.rightBarButtonItem = self.addButtonItem;
 	self.navigationItem.leftBarButtonItem = self.refreshButtonItem;
-	// Load the incident from the website
-	self.incidentsList = [self allocIncidentsArray];
 }
 
 // Reload data when it can have been modified
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	// Load the incident from the website
+	self.incidentsList = [self allocIncidentsArray];
 	[self.tableView reloadData];
 }
 
@@ -145,16 +148,14 @@
 	// Bind the view dialog to a freshly created navigation controller
 	UINavigationController *addNavigationController = [[UINavigationController alloc] initWithRootViewController:addViewController];
 	
-	// Push the view of one incident
+	// Push the view for a new incident
 	[self presentModalViewController:addNavigationController animated:YES];
-	
-	// Release when we are over
-	[addViewController release];
-	[addNavigationController release];
 }
 
 - (IBAction) refreshButtonPressed: (id)sender{
 	LogDebug(@"Add button pressed");
+	self.incidentsList = [self allocIncidentsArray];
+	[self.tableView reloadData];
 }
 
 #pragma mark -
@@ -164,11 +165,6 @@
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];    
 }
-
-- (void)viewDidUnload {
-
-}
-
 
 - (void)dealloc {
     [super dealloc];

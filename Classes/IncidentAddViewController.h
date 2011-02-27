@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JSON.h"
 
 @interface IncidentAddViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {
-	NSArray *type;
+	NSArray *types;
 	NSArray *lines;
 	NSString *selectedType;
 	NSDictionary *transportData;
@@ -18,17 +18,19 @@
 	IBOutlet UIPickerView *picker;
 	IBOutlet UITextView *incidentText;
 	IBOutlet UITextField *lineField;
+	IBOutlet UITextField *bgField;
 	CGFloat animatedDistance;
-	int consecutiveReturns;
+	int level;
 }
 
-@property (nonatomic, retain) NSArray *type;
+@property (nonatomic, retain) NSArray *types;
 @property (nonatomic, retain) NSArray *lines;
 @property (nonatomic, retain) NSString *selectedType;
 @property (nonatomic, retain) NSDictionary *transportData;
 @property (nonatomic, retain) IBOutlet UIPickerView *picker;
 @property (nonatomic, retain) IBOutlet UITextView *incidentText;
 @property (nonatomic, retain) IBOutlet UITextField *lineField;
+@property (nonatomic, retain) IBOutlet UITextField *bgField;
 
 - (IBAction)textDoneEditing:(id) sender;
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
