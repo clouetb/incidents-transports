@@ -11,7 +11,7 @@
 
 @implementation IncidentAddViewController
 
-@synthesize types, lines, selectedType, transportData, picker, incidentText, lineField;
+@synthesize types, lines, selectedType, transportData, picker, incidentText, lineField, bgField;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {

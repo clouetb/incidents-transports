@@ -103,7 +103,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D96253C313199C8100BF99AF /* REST */,
 				D9E2FA9E1319502900948F2F /* IncidentAddViewController.h */,
 				D9E2FA9F1319502900948F2F /* IncidentAddViewController.m */,
 				D9E2F9641318841800948F2F /* IncidentDetailViewController.h */,
@@ -183,13 +182,6 @@
 				D9597347131AD23200953BA7 /* btn_small.png */,
 			);
 			name = Images;
-			sourceTree = "<group>";
-		};
-		D96253C313199C8100BF99AF /* REST */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = REST;
 			sourceTree = "<group>";
 		};
 		D9E2F87813185ED200948F2F /* JSON */ = {

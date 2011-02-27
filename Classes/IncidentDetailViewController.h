@@ -27,7 +27,6 @@
 - (IBAction) minusButtonPressed: (id)sender;
 - (IBAction) plusButtonPressed: (id)sender;
 - (IBAction) endButtonPressed: (id)sender;
-- (void)drawBorder: (UIView *) view;
 - (void)checkForError:(NSNumber *) numberOfVotes;
 
 @end
