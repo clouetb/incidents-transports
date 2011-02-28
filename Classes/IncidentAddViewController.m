@@ -292,7 +292,16 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [self.view setFrame:viewFrame];
     
     [UIView commitAnimations];
-}
+	// Select all the text in the incident text so that the user can wipe the entire content just by starting to type
+	[self performSelector:@selector(selectAll:) withObject:incidentText afterDelay:0.01]; 
+} 
+
+// Select all the text in the textView
+- (void)selectAll:(UITextView *)inView 
+{ 
+	inView.selectedRange = NSMakeRange(0, [incidentText.text length]); 
+} 
+
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {

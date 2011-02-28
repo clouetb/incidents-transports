@@ -31,19 +31,20 @@
 	</array>
 	<key>Transilien</key>
 	<array>
-		<string>F</string>
-		<string>G</string>
 		<string>H</string>
-		<string>I</string>
 		<string>J</string>
 		<string>K</string>
 		<string>L</string>
+		<string>N</string>
+		<string>P</string>
+		<string>R</string>
 	</array>
 	<key>Tram</key>
 	<array>
 		<string>1</string>
 		<string>2</string>
 		<string>3</string>
+		<string>4</string>
 	</array>
 	<key>Bus</key>
 	<array>
