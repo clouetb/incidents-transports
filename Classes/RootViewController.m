@@ -23,10 +23,11 @@
 
 	// Init data placeholder
 	responseData = [[NSMutableData data] retain];
-	
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; 
+	LogDebug(@"*** Host %@", [defaults stringForKey:INCIDENT_SERVER_HOST]);
 	// Build the GET request
 	NSString *URLString = [[NSString alloc] initWithFormat:@"http://%@/api/incidents.json/all", 
-			  [[[NSBundle mainBundle] infoDictionary] objectForKey:INCIDENT_SERVER_HOST]];
+			  [[NSUserDefaults standardUserDefaults] objectForKey:INCIDENT_SERVER_HOST]];
 	LogDebug(@"URL %@", URLString);
 	theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString] cachePolicy:NSURLRequestUseProtocolCachePolicy
 						  timeoutInterval:60.0];

@@ -22,7 +22,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
-    
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; 
+	if (![defaults stringForKey:INCIDENT_SERVER_HOST]){
+		NSDictionary *dict = [NSDictionary dictionaryWithObject:@"incidents-transports.com" forKey:INCIDENT_SERVER_HOST];
+		[[NSUserDefaults standardUserDefaults] registerDefaults:dict];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+	}
     // Add the navigation controller's view to the window and display.
     [self.window addSubview:navigationController.view];
     [self.window makeKeyAndVisible];
