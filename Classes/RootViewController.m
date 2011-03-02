@@ -23,8 +23,6 @@
 
 	// Init data placeholder
 	responseData = [[NSMutableData data] retain];
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; 
-	LogDebug(@"*** Host %@", [defaults stringForKey:INCIDENT_SERVER_HOST]);
 	// Build the GET request
 	NSString *URLString = [[NSString alloc] initWithFormat:@"http://%@/api/incidents.json/all", 
 			  [[NSUserDefaults standardUserDefaults] objectForKey:INCIDENT_SERVER_HOST]];
@@ -67,7 +65,7 @@
 	string = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
 	//string = [[NSString alloc]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"data" ofType:@"json"] encoding:NSUTF8StringEncoding error:&error];
 
-	LogDebug(@"%@", string);
+	//LogDebug(@"%@", string);
 
 	// Parse the JSon string
 	tempArray = [[NSMutableArray alloc] initWithArray:[json objectWithString:string error:&error] copyItems:YES];

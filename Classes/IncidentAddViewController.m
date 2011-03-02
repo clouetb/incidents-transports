@@ -39,10 +39,9 @@
 	[MBProgressHUD showHUDAddedTo:self.view.superview.superview.superview animated:YES];
 	SBJsonWriter *json = [SBJsonWriter new];
 	
-	LogDebug(@"Server %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:INCIDENT_SERVER_HOST]);
 	// Build the URL depending on the button pressed and on the incident ID
 	NSString *URLString = [[NSString alloc] initWithFormat:@"http://%@/api/incident", 
-			  [[[NSBundle mainBundle] infoDictionary] objectForKey:INCIDENT_SERVER_HOST]];
+			  [[NSUserDefaults standardUserDefaults] objectForKey:INCIDENT_SERVER_HOST]];
 	LogDebug(@"URL %@", URLString);
 	URL = [NSURL URLWithString:URLString];
 	LogDebug (@"%@", URL);

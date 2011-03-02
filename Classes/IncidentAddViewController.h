@@ -28,7 +28,6 @@
 @property (nonatomic, retain) NSArray *lines;
 @property (nonatomic, retain) NSString *selectedType;
 @property (nonatomic, retain) NSDictionary *transportData;
-@property (nonatomic, retain) NSURLConnection *connection;
 @property (nonatomic, retain) IBOutlet UIPickerView *picker;
 @property (nonatomic, retain) IBOutlet UITextView *incidentText;
 @property (nonatomic, retain) IBOutlet UITextField *lineField;
