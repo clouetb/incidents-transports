@@ -21,12 +21,12 @@
 #define LOGGING_ENABLED	 1
 
 // Set any or all of these switches to enable or disable logging at specific levels.
-#define LOGGING_LEVEL_DEBUG	 0
+#define LOGGING_LEVEL_DEBUG	 1
 #define LOGGING_LEVEL_INFO	 1
 #define LOGGING_LEVEL_ERROR	 1
 
 // Set this switch to set whether or not to include class, method and line information in the log entries.
-#define LOGGING_INCLUDE_CODE_LOCATION	0
+#define LOGGING_INCLUDE_CODE_LOCATION	1
 
 // ***************** END OF USER SETTINGS ***************
 

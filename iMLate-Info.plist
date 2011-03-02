@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>incidentsServerHost</key>
-	<string>incidents-transports.com</string>
+	<string>incidents-ratp.alwaysdata.net</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>fr_FR</string>
 	<key>CFBundleDisplayName</key>

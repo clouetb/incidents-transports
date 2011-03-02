@@ -10,19 +10,31 @@
 #import "JSON.h"
 #import "IncidentDetailViewController.h"
 #import "IncidentAddViewController.h"
+#import "MBProgressHUD.h"
 
 @interface RootViewController : UITableViewController {
 	NSMutableArray *incidentsList;
 	IBOutlet UIBarButtonItem *addButtonItem;
 	IBOutlet UIBarButtonItem *refreshButtonItem;
+	IBOutlet UIBarButtonItem *cancelButtonItem;
+	NSMutableData *responseData;
+	NSURLConnection *connection;
 }
 
 @property (nonatomic, retain) NSArray *incidentsList;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *addButtonItem;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshButtonItem;
-
+@property (retain) IBOutlet UIBarButtonItem *refreshButtonItem;
+@property (retain) IBOutlet UIBarButtonItem *cancelButtonItem;
+@property (retain) NSURLConnection *connection;
 
 - (IBAction) addButtonPressed: (id)sender;
 - (IBAction) refreshButtonPressed: (id)sender;
-- (NSMutableArray *)allocIncidentsArray;
+- (IBAction) cancelButtonPressed:(id)sender;
+
+- (void)initAndLaunchAsyncRequest;
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 @end

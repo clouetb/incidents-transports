@@ -9,21 +9,21 @@
 
 @implementation RootViewController
 
-@synthesize incidentsList, addButtonItem, refreshButtonItem;
+@synthesize incidentsList, addButtonItem, refreshButtonItem, cancelButtonItem, connection;
 #pragma mark -
 #pragma mark View lifecycle
 
 // Fetch and allocs an array of incidents from the website
-- (NSMutableArray *)allocIncidentsArray {
+- (void)initAndLaunchAsyncRequest {
 	NSMutableURLRequest *theRequest;
-	NSURLResponse *theResponse;
-	NSData *result;
-	NSString *string;
-	NSError *error;
-	SBJsonParser *json = [SBJsonParser new];
-	NSMutableArray *tempArray;
+	self.navigationItem.leftBarButtonItem = self.cancelButtonItem;
+	
+	// Display an activity indicator
+	[MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-	LogDebug(@"Server %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:INCIDENT_SERVER_HOST]);
+	// Init data placeholder
+	responseData = [[NSMutableData data] retain];
+	
 	// Build the GET request
 	NSString *URLString = [[NSString alloc] initWithFormat:@"http://%@/api/incidents.json/all", 
 			  [[[NSBundle mainBundle] infoDictionary] objectForKey:INCIDENT_SERVER_HOST]];
@@ -31,10 +31,39 @@
 	theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString] cachePolicy:NSURLRequestUseProtocolCachePolicy
 						  timeoutInterval:60.0];
 	[theRequest setHTTPMethod:@"GET"];
+	// Asynchronously execute request
+	connection = [[[NSURLConnection alloc] initWithRequest:theRequest delegate:self] autorelease];
+	self.navigationItem.leftBarButtonItem = self.cancelButtonItem;
+}
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    [responseData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [responseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	LogError(@"%@", [error localizedDescription]);
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Connexion impossible au serveur" 
+												   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alert show];
+	[responseData release];
 	
-	// Execute and build a string from the result
-	result = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
-	string = [[[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding] autorelease];
+	[MBProgressHUD hideHUDForView:self.view animated:YES];
+	self.navigationItem.leftBarButtonItem = self.refreshButtonItem;
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+	NSString *string;
+	NSError *error = nil;
+	SBJsonParser *json = [SBJsonParser new];
+	NSMutableArray *tempArray;
+    // Once this method is invoked, "responseData" contains the complete result
+
+	string = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
 	//string = [[NSString alloc]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"data" ofType:@"json"] encoding:NSUTF8StringEncoding error:&error];
 
 	LogDebug(@"%@", string);
@@ -42,29 +71,27 @@
 	// Parse the JSon string
 	tempArray = [[NSMutableArray alloc] initWithArray:[json objectWithString:string error:&error] copyItems:YES];
 	
+	[responseData release];
+	
 	// Check whether the parsing went smoothly
-	if (tempArray == nil) {
-
+	if (error) {
 		LogError(@"Erreur lors de la lecture du code JSON (%s).", [error localizedDescription]);
-
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"La récupération de la liste des incidents a échoué" 
+													   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
 	} else {
-
-		for (NSDictionary *incident in tempArray) {
-			LogDebug(@"\tTime=%@ et Line=%@\nReason=%@\n",
-				  [incident objectForKey:LAST_MODIFIED_TIME],
-				  [incident objectForKey:LINE], 
-				  [incident objectForKey:REASON]);
-		}
-
-		return tempArray;
+		incidentsList = tempArray;
+		[self.tableView reloadData];
 	}
-	return incidentsList;
+	// Stop the activity indicator
+	[MBProgressHUD hideHUDForView:self.view animated:YES];
+	self.navigationItem.leftBarButtonItem = self.refreshButtonItem;
 }
 
-// 
+// Triggered when the view is about to appear
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Put a small button with a small + sign
+	// Put a small button with a small + sign and the refresh button
 	self.navigationItem.rightBarButtonItem = self.addButtonItem;
 	self.navigationItem.leftBarButtonItem = self.refreshButtonItem;
 }
@@ -73,15 +100,7 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	// Load the incident from the website
-	self.incidentsList = [self allocIncidentsArray];
-	[self.tableView reloadData];
-	// If the result is still 0, there is an error.
-	if (self.incidentsList == nil) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de récupérer la liste des incidents" 
-													   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
-		return;
-	}
+	[self initAndLaunchAsyncRequest];
 }
 
 #pragma mark -
@@ -160,9 +179,13 @@
 }
 
 - (IBAction) refreshButtonPressed: (id)sender{
-	LogDebug(@"Add button pressed");
-	self.incidentsList = [self allocIncidentsArray];
-	[self.tableView reloadData];
+	[self initAndLaunchAsyncRequest];
+}
+
+- (IBAction) cancelButtonPressed:(id)sender {
+	[connection cancel];
+	[MBProgressHUD hideHUDForView:self.view animated:YES];
+	self.navigationItem.leftBarButtonItem = self.refreshButtonItem;
 }
 
 #pragma mark -
@@ -178,8 +201,8 @@
 	[incidentsList release];
 	[addButtonItem release];
 	[refreshButtonItem release];
+	[cancelButtonItem release];
+	[connection release];
 }
 
-
 @end
-

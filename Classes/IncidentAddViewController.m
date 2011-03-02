@@ -30,14 +30,13 @@
 }
 
 - (void) save:(id)sender {
-	LogDebug(@"Save pressed");
 	NSMutableURLRequest *theRequest;
-	NSURLResponse *theResponse;
-	NSData *result;
 	NSString *lineValue;
-	NSError *error = nil;
 	NSURL *URL;
 	NSMutableDictionary *incidentValues;
+	
+	// Display an activity indicator
+	[MBProgressHUD showHUDAddedTo:self.view.superview.superview.superview animated:YES];
 	SBJsonWriter *json = [SBJsonWriter new];
 	
 	LogDebug(@"Server %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:INCIDENT_SERVER_HOST]);
@@ -78,11 +77,38 @@
 	[incidentValues setObject:@"iMLate" forKey:SOURCE];
 	LogDebug(@"Values : %@", [json stringWithObject:incidentValues]);
 	
+	// Init data placeholder
+	responseData = [[NSMutableData data] retain];
 	[theRequest setHTTPBody:[json dataWithObject:incidentValues]];
-	// Execute and build a string from the result
-	result = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
-	NSString *string = [[[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding] autorelease];
+	
+	// Asynchronously execute request
+	[[[NSURLConnection alloc] initWithRequest:theRequest delegate:self] autorelease];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    [responseData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [responseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	LogError(@"%@", [error localizedDescription]);
+	
+	[MBProgressHUD hideHUDForView:self.view.superview.superview.superview animated:YES];
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de soumettre l'incident" 
+												   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alert show];
+	[responseData release];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+	// Build a string from the result
+	NSString *string = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
 	LogDebug (@"%@", string);
+	[MBProgressHUD hideHUDForView:self.view.superview.superview.superview animated:YES];
 	if (![string isEqualToString:@"Created"]) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de soumettre l'incident" 
 													   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

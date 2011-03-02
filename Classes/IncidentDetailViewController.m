@@ -40,8 +40,7 @@
 	NSData *result;
 	NSError *error = nil;
 	NSURL *URL;
-	
-	// Build the URL depending on the button pressed and on the incident ID
+		// Build the URL depending on the button pressed and on the incident ID
 	NSString *URLString = [[NSString alloc] initWithFormat:@"http://%@/incident/action/%@/%@", 
 			  [[[NSBundle mainBundle] infoDictionary] objectForKey:INCIDENT_SERVER_HOST],
 			  [incident objectForKey:UID],
@@ -67,6 +66,8 @@
 // Vote for incident existing +1
 - (void)plusButtonPressed:(id)sender {
 	LogDebug(@"Plus button pressed");
+	[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
 	NSString *plus = @"plus";
 	
 	// Trigger the request with correct parameters
@@ -74,6 +75,7 @@
 	
 	[self checkForError:numberOfPlus];
 	
+	[MBProgressHUD hideHUDForView:self.view animated:YES];
 	// Update cached value
 	[incident setValue:numberOfPlus forKey:VOTE_PLUS];
 	LogDebug(@"Value %@", [incident objectForKey:VOTE_PLUS]);
@@ -86,11 +88,13 @@
 // Vote for incident not existing -1
 - (void)minusButtonPressed:(id)sender {
 	LogDebug(@"Minus button pressed");
+	[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
 	NSString *minus = @"minus";
 	NSNumber *numberOfMinus = [self voteForIncident:minus];
 	
 	[self checkForError:numberOfMinus];
-	
+	[MBProgressHUD hideHUDForView:self.view animated:YES];
 	[incident setValue:numberOfMinus forKey:VOTE_MINUS];
 	LogDebug(@"Value %@", [incident objectForKey:VOTE_MINUS]);
 	[minusButton setTitle:[NSString stringWithFormat:@"-1\t(%@)", [incident objectForKey:VOTE_MINUS]]
@@ -100,11 +104,13 @@
 // Vote for incident end
 - (void)endButtonPressed:(id)sender {
 	LogDebug(@"Minus button pressed");
+	[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
 	NSString *end = @"end";
 	NSNumber *numberOfEnd = [self voteForIncident:end];
 	
 	[self checkForError:numberOfEnd];
-	
+	[MBProgressHUD hideHUDForView:self.view animated:YES];
 	[incident setValue:numberOfEnd forKey:VOTE_ENDED];
 	LogDebug(@"Value %@", [incident objectForKey:VOTE_ENDED]);
 	[endButton setTitle:[NSString stringWithFormat:@"Incident terminé\t(%@)", [incident objectForKey:VOTE_ENDED]]
