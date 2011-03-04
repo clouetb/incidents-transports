@@ -13,15 +13,17 @@
 #import "MBProgressHUD.h"
 
 @interface RootViewController : UITableViewController {
-	NSMutableArray *incidentsList;
 	IBOutlet UIBarButtonItem *addButtonItem;
 	IBOutlet UIBarButtonItem *refreshButtonItem;
 	IBOutlet UIBarButtonItem *cancelButtonItem;
+	NSString *RESTAction;
+	NSMutableArray *incidentsList;
 	NSMutableData *responseData;
 	NSURLConnection *connection;
 }
 
 @property (nonatomic, retain) NSArray *incidentsList;
+@property (nonatomic, retain) NSString *RESTAction;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *addButtonItem;
 @property (retain) IBOutlet UIBarButtonItem *refreshButtonItem;
 @property (retain) IBOutlet UIBarButtonItem *cancelButtonItem;

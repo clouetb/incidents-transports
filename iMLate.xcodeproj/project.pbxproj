@@ -16,6 +16,13 @@
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		D913A54C131A5A2F0019B379 /* transport-means.plist in Resources */ = {isa = PBXBuildFile; fileRef = D913A54B131A5A2F0019B379 /* transport-means.plist */; };
+		D94EF93F1321757C00EB7774 /* CurrentIncidentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94EF93E1321757C00EB7774 /* CurrentIncidentsViewController.m */; };
+		D94EF944132176AD00EB7774 /* HourIncidentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94EF943132176AD00EB7774 /* HourIncidentsViewController.m */; };
+		D94EF949132176F900EB7774 /* DayIncidentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94EF948132176F900EB7774 /* DayIncidentsViewController.m */; };
+		D94EF9A1132197BE00EB7774 /* hourglass.png in Resources */ = {isa = PBXBuildFile; fileRef = D94EF9A0132197BE00EB7774 /* hourglass.png */; };
+		D94EF9A513219A1C00EB7774 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = D94EF9A413219A1C00EB7774 /* clock.png */; };
+		D94EF9A913219C0700EB7774 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = D94EF9A813219C0700EB7774 /* calendar.png */; };
+		D94EF9AB13219CEF00EB7774 /* diary.png in Resources */ = {isa = PBXBuildFile; fileRef = D94EF9AA13219CEF00EB7774 /* diary.png */; };
 		D9597348131AD23200953BA7 /* btn_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D9597346131AD23200953BA7 /* btn_big.png */; };
 		D9597349131AD23200953BA7 /* btn_small.png in Resources */ = {isa = PBXBuildFile; fileRef = D9597347131AD23200953BA7 /* btn_small.png */; };
 		D959735B131AE29B00953BA7 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D959735A131AE29B00953BA7 /* icon.png */; };
@@ -54,6 +61,16 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iMLate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iMLate-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		D913A54B131A5A2F0019B379 /* transport-means.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "transport-means.plist"; sourceTree = "<group>"; };
+		D94EF93D1321757C00EB7774 /* CurrentIncidentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentIncidentsViewController.h; sourceTree = "<group>"; };
+		D94EF93E1321757C00EB7774 /* CurrentIncidentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentIncidentsViewController.m; sourceTree = "<group>"; };
+		D94EF942132176AD00EB7774 /* HourIncidentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HourIncidentsViewController.h; sourceTree = "<group>"; };
+		D94EF943132176AD00EB7774 /* HourIncidentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HourIncidentsViewController.m; sourceTree = "<group>"; };
+		D94EF947132176F900EB7774 /* DayIncidentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayIncidentsViewController.h; sourceTree = "<group>"; };
+		D94EF948132176F900EB7774 /* DayIncidentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayIncidentsViewController.m; sourceTree = "<group>"; };
+		D94EF9A0132197BE00EB7774 /* hourglass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hourglass.png; sourceTree = "<group>"; };
+		D94EF9A413219A1C00EB7774 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		D94EF9A813219C0700EB7774 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
+		D94EF9AA13219CEF00EB7774 /* diary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diary.png; sourceTree = "<group>"; };
 		D9597346131AD23200953BA7 /* btn_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_big.png; sourceTree = "<group>"; };
 		D9597347131AD23200953BA7 /* btn_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_small.png; sourceTree = "<group>"; };
 		D959735A131AE29B00953BA7 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -121,6 +138,12 @@
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* iMLateAppDelegate.h */,
 				1D3623250D0F684500981E51 /* iMLateAppDelegate.m */,
+				D94EF93D1321757C00EB7774 /* CurrentIncidentsViewController.h */,
+				D94EF93E1321757C00EB7774 /* CurrentIncidentsViewController.m */,
+				D94EF942132176AD00EB7774 /* HourIncidentsViewController.h */,
+				D94EF943132176AD00EB7774 /* HourIncidentsViewController.m */,
+				D94EF947132176F900EB7774 /* DayIncidentsViewController.h */,
+				D94EF948132176F900EB7774 /* DayIncidentsViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -188,6 +211,10 @@
 		D9597344131AD22100953BA7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D94EF9AA13219CEF00EB7774 /* diary.png */,
+				D94EF9A813219C0700EB7774 /* calendar.png */,
+				D94EF9A413219A1C00EB7774 /* clock.png */,
+				D94EF9A0132197BE00EB7774 /* hourglass.png */,
 				D959735A131AE29B00953BA7 /* icon.png */,
 				D9597346131AD23200953BA7 /* btn_big.png */,
 				D9597347131AD23200953BA7 /* btn_small.png */,
@@ -292,6 +319,10 @@
 				D9597349131AD23200953BA7 /* btn_small.png in Resources */,
 				D959735B131AE29B00953BA7 /* icon.png in Resources */,
 				D98CFCFE131EF66F00B48FE5 /* Settings.bundle in Resources */,
+				D94EF9A1132197BE00EB7774 /* hourglass.png in Resources */,
+				D94EF9A513219A1C00EB7774 /* clock.png in Resources */,
+				D94EF9A913219C0700EB7774 /* calendar.png in Resources */,
+				D94EF9AB13219CEF00EB7774 /* diary.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +348,9 @@
 				D9E2F9671318841800948F2F /* IncidentDetailViewController.m in Sources */,
 				D9E2FAA11319502900948F2F /* IncidentAddViewController.m in Sources */,
 				D98CFC3F131DB59500B48FE5 /* MBProgressHUD.m in Sources */,
+				D94EF93F1321757C00EB7774 /* CurrentIncidentsViewController.m in Sources */,
+				D94EF944132176AD00EB7774 /* HourIncidentsViewController.m in Sources */,
+				D94EF949132176F900EB7774 /* DayIncidentsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

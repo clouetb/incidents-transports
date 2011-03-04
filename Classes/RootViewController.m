@@ -9,7 +9,7 @@
 
 @implementation RootViewController
 
-@synthesize incidentsList, addButtonItem, refreshButtonItem, cancelButtonItem, connection;
+@synthesize incidentsList, addButtonItem, refreshButtonItem, cancelButtonItem, connection, RESTAction;
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -24,8 +24,8 @@
 	// Init data placeholder
 	responseData = [[NSMutableData data] retain];
 	// Build the GET request
-	NSString *URLString = [[NSString alloc] initWithFormat:@"http://%@/api/incidents.json/all", 
-			  [[NSUserDefaults standardUserDefaults] objectForKey:INCIDENT_SERVER_HOST]];
+	NSString *URLString = [[NSString alloc] initWithFormat:@"http://%@/api/incidents.json/%@", 
+			  [[NSUserDefaults standardUserDefaults] objectForKey:INCIDENT_SERVER_HOST], self.RESTAction];
 	LogDebug(@"URL %@", URLString);
 	theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString] cachePolicy:NSURLRequestUseProtocolCachePolicy
 						  timeoutInterval:60.0];
@@ -93,6 +93,7 @@
 	// Put a small button with a small + sign and the refresh button
 	self.navigationItem.rightBarButtonItem = self.addButtonItem;
 	self.navigationItem.leftBarButtonItem = self.refreshButtonItem;
+	self.RESTAction = REST_ACTION_ALL;
 }
 
 // Reload data when it can have been modified
@@ -202,6 +203,7 @@
 	[refreshButtonItem release];
 	[cancelButtonItem release];
 	[connection release];
+	[RESTAction release];
 }
 
 @end
