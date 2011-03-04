@@ -33,7 +33,6 @@
 		D94EF9E51321A9FF00EB7774 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D94EF9DE1321A9FF00EB7774 /* Icon@2x.png */; };
 		D9597348131AD23200953BA7 /* btn_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D9597346131AD23200953BA7 /* btn_big.png */; };
 		D9597349131AD23200953BA7 /* btn_small.png in Resources */ = {isa = PBXBuildFile; fileRef = D9597347131AD23200953BA7 /* btn_small.png */; };
-		D9625325131971AC00BF99AF /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = D962530513196B5900BF99AF /* data.json */; };
 		D96255481319DA7600BF99AF /* transport-lines.plist in Resources */ = {isa = PBXBuildFile; fileRef = D96255471319DA7600BF99AF /* transport-lines.plist */; };
 		D98CFB26131D92E900B48FE5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D98CFB25131D92E900B48FE5 /* CFNetwork.framework */; };
 		D98CFC3F131DB59500B48FE5 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D98CFC3E131DB59500B48FE5 /* MBProgressHUD.m */; };
@@ -343,7 +342,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9625325131971AC00BF99AF /* data.json in Resources */,
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
 				D9E2F9681318841800948F2F /* IncidentDetailViewController.xib in Resources */,

@@ -210,6 +210,16 @@
 	return 2;
 }
 
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
+	switch (component){
+		case 0: 
+			return 190.0f;
+		case 1: 
+			return 110.0f;
+	}
+	return 0;
+}
+
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
 	if (component == 0) {
 		LogDebug(@"Means to load %d", [types count]);
