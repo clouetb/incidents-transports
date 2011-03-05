@@ -66,6 +66,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iMLate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iMLate-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		D913A54B131A5A2F0019B379 /* transport-means.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "transport-means.plist"; sourceTree = "<group>"; };
+		D94681E31321CA4C00A1CBC1 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		D94EF93D1321757C00EB7774 /* CurrentIncidentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentIncidentsViewController.h; sourceTree = "<group>"; };
 		D94EF93E1321757C00EB7774 /* CurrentIncidentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentIncidentsViewController.m; sourceTree = "<group>"; };
 		D94EF942132176AD00EB7774 /* HourIncidentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HourIncidentsViewController.h; sourceTree = "<group>"; };
@@ -201,6 +202,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D94EF9DB1321A9FF00EB7774 /* Icon-Small.png */,
+				D94EF9DC1321A9FF00EB7774 /* Icon-Small@2x.png */,
+				D94EF9DD1321A9FF00EB7774 /* Icon.png */,
+				D94EF9DE1321A9FF00EB7774 /* Icon@2x.png */,
 				D9E2FAA01319502900948F2F /* IncidentAddViewController.xib */,
 				D9E2F9661318841800948F2F /* IncidentDetailViewController.xib */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
@@ -210,6 +215,7 @@
 				D962530613196E5700BF99AF /* template.json */,
 				D96255471319DA7600BF99AF /* transport-lines.plist */,
 				D913A54B131A5A2F0019B379 /* transport-means.plist */,
+				D94681E31321CA4C00A1CBC1 /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -230,10 +236,6 @@
 				D94EF9D81321A9FF00EB7774 /* icon_template_button.png */,
 				D94EF9D91321A9FF00EB7774 /* icon_template_train.png */,
 				D94EF9DA1321A9FF00EB7774 /* icon_template.png */,
-				D94EF9DB1321A9FF00EB7774 /* Icon-Small.png */,
-				D94EF9DC1321A9FF00EB7774 /* Icon-Small@2x.png */,
-				D94EF9DD1321A9FF00EB7774 /* Icon.png */,
-				D94EF9DE1321A9FF00EB7774 /* Icon@2x.png */,
 				D94EF9BA1321A31F00EB7774 /* calendar.png */,
 				D94EF9BB1321A31F00EB7774 /* clock.png */,
 				D94EF9BC1321A31F00EB7774 /* diary.png */,
@@ -397,6 +399,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/incidents-transports/Entitlements.plist";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -404,6 +408,7 @@
 				GCC_PREFIX_HEADER = iMLate_Prefix.pch;
 				INFOPLIST_FILE = "iMLate-Info.plist";
 				PRODUCT_NAME = iMLate;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = Debug;
 		};
@@ -411,6 +416,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/incidents-transports/Entitlements.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iMLate_Prefix.pch;
@@ -448,6 +454,37 @@
 			};
 			name = Release;
 		};
+		D94681C81321C81D00A1CBC1 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Distribution;
+		};
+		D94681C91321C81D00A1CBC1 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/incidents-transports/Entitlements.plist";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iMLate_Prefix.pch;
+				INFOPLIST_FILE = "iMLate-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PRODUCT_NAME = iMLate;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -456,6 +493,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				D94681C91321C81D00A1CBC1 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -465,6 +503,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				D94681C81321C81D00A1CBC1 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
