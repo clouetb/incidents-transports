@@ -15,6 +15,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.RESTAction = REST_ACTION_CURRENT;
+	self.displayFormat = @"HH:mm";
 }
 
 - (void)dealloc {

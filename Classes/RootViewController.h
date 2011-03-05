@@ -17,6 +17,7 @@
 	IBOutlet UIBarButtonItem *refreshButtonItem;
 	IBOutlet UIBarButtonItem *cancelButtonItem;
 	NSString *RESTAction;
+	NSString *displayFormat;
 	NSMutableArray *incidentsList;
 	NSMutableData *responseData;
 	NSURLConnection *connection;
@@ -24,6 +25,7 @@
 
 @property (nonatomic, retain) NSArray *incidentsList;
 @property (nonatomic, retain) NSString *RESTAction;
+@property (nonatomic, retain) NSString *displayFormat;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *addButtonItem;
 @property (retain) IBOutlet UIBarButtonItem *refreshButtonItem;
 @property (retain) IBOutlet UIBarButtonItem *cancelButtonItem;

@@ -9,7 +9,7 @@
 
 @implementation RootViewController
 
-@synthesize incidentsList, addButtonItem, refreshButtonItem, cancelButtonItem, connection, RESTAction;
+@synthesize incidentsList, addButtonItem, refreshButtonItem, cancelButtonItem, connection, RESTAction, displayFormat;
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -94,6 +94,7 @@
 	self.navigationItem.rightBarButtonItem = self.addButtonItem;
 	self.navigationItem.leftBarButtonItem = self.refreshButtonItem;
 	self.RESTAction = REST_ACTION_ALL;
+	self.displayFormat = @"dd/MM HH:mm";
 }
 
 // Reload data when it can have been modified
@@ -127,7 +128,7 @@
 	NSDateFormatter *dateFormater = [[[NSDateFormatter alloc] init] autorelease];
 	[dateFormater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 	NSDate *date = [dateFormater dateFromString:[incident objectForKey:LAST_MODIFIED_TIME]];
-	[dateFormater setDateFormat:@"dd/MM HH:mm"];
+	[dateFormater setDateFormat:self.displayFormat];
 
 	// Build a new cell if needed
     static NSString *CellIdentifier = @"Cell";
