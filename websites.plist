@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ABCD Trains</key>
+	<string>www.abcdtrains.com</string>
+	<key>Transilien</key>
+	<string>www.transilien.mobi</string>
+	<key>RATP</key>
+	<string>wap.ratp.fr</string>
+</dict>
+</plist>
