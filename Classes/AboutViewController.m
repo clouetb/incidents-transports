@@ -17,16 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.title = @"À propos";
-	NSError *error;
 	self.text.text = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] 
 											pathForResource:@"about" ofType:@"txt"] 
-											encoding:NSUTF8StringEncoding error:&error];
-	if (error) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de récuperer le texte d'information" 
-													   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
-		[alert release];
-	}
+											encoding:NSUTF8StringEncoding error:NULL];
 }
 
 - (void)didReceiveMemoryWarning {
