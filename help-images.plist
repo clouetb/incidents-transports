@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>help_main</string>
+	<string>help_incidents_list</string>
+	<string>help_details_incident</string>
+	<string>help_add_incident</string>
+	<string>help_others</string>
+	<string>help_transporters</string>
+	<string>help_light</string>
+</array>
+</plist>

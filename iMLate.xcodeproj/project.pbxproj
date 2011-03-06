@@ -16,6 +16,18 @@
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		D913A54C131A5A2F0019B379 /* transport-means.plist in Resources */ = {isa = PBXBuildFile; fileRef = D913A54B131A5A2F0019B379 /* transport-means.plist */; };
+		D9282DF41323BEF200CEC10D /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9282DF21323BEF200CEC10D /* HelpViewController.m */; };
+		D9282DF51323BEF200CEC10D /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9282DF31323BEF200CEC10D /* HelpViewController.xib */; };
+		D9282E101323C52F00CEC10D /* help-images.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9282E0F1323C52F00CEC10D /* help-images.plist */; };
+		D9282E481323E3E200CEC10D /* HelpPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9282E461323E3E200CEC10D /* HelpPageViewController.m */; };
+		D9282E491323E3E200CEC10D /* HelpPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9282E471323E3E200CEC10D /* HelpPageViewController.xib */; };
+		D9282FD01324016500CEC10D /* help_add_incident.png in Resources */ = {isa = PBXBuildFile; fileRef = D9282FC91324016500CEC10D /* help_add_incident.png */; };
+		D9282FD11324016500CEC10D /* help_details_incident.png in Resources */ = {isa = PBXBuildFile; fileRef = D9282FCA1324016500CEC10D /* help_details_incident.png */; };
+		D9282FD21324016500CEC10D /* help_incidents_list.png in Resources */ = {isa = PBXBuildFile; fileRef = D9282FCB1324016500CEC10D /* help_incidents_list.png */; };
+		D9282FD31324016500CEC10D /* help_light.png in Resources */ = {isa = PBXBuildFile; fileRef = D9282FCC1324016500CEC10D /* help_light.png */; };
+		D9282FD41324016500CEC10D /* help_main.png in Resources */ = {isa = PBXBuildFile; fileRef = D9282FCD1324016500CEC10D /* help_main.png */; };
+		D9282FD51324016500CEC10D /* help_others.png in Resources */ = {isa = PBXBuildFile; fileRef = D9282FCE1324016500CEC10D /* help_others.png */; };
+		D9282FD61324016500CEC10D /* help_transporters.png in Resources */ = {isa = PBXBuildFile; fileRef = D9282FCF1324016500CEC10D /* help_transporters.png */; };
 		D94EF93F1321757C00EB7774 /* CurrentIncidentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94EF93E1321757C00EB7774 /* CurrentIncidentsViewController.m */; };
 		D94EF944132176AD00EB7774 /* HourIncidentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94EF943132176AD00EB7774 /* HourIncidentsViewController.m */; };
 		D94EF949132176F900EB7774 /* DayIncidentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94EF948132176F900EB7774 /* DayIncidentsViewController.m */; };
@@ -33,6 +45,9 @@
 		D94EF9E51321A9FF00EB7774 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D94EF9DE1321A9FF00EB7774 /* Icon@2x.png */; };
 		D9597348131AD23200953BA7 /* btn_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D9597346131AD23200953BA7 /* btn_big.png */; };
 		D9597349131AD23200953BA7 /* btn_small.png in Resources */ = {isa = PBXBuildFile; fileRef = D9597347131AD23200953BA7 /* btn_small.png */; };
+		D961CB0613237F320055A5F4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D961CB0513237F320055A5F4 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D961CB0E13237FA20055A5F4 /* LightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D961CB0C13237FA20055A5F4 /* LightViewController.m */; };
+		D961CCB7132384BB0055A5F4 /* LightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D961CCB6132384BB0055A5F4 /* LightViewController.xib */; };
 		D96255481319DA7600BF99AF /* transport-lines.plist in Resources */ = {isa = PBXBuildFile; fileRef = D96255471319DA7600BF99AF /* transport-lines.plist */; };
 		D98CFC3F131DB59500B48FE5 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D98CFC3E131DB59500B48FE5 /* MBProgressHUD.m */; };
 		D98CFCFE131EF66F00B48FE5 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D98CFCFD131EF66F00B48FE5 /* Settings.bundle */; };
@@ -80,7 +95,21 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iMLate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iMLate-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		D913A54B131A5A2F0019B379 /* transport-means.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "transport-means.plist"; sourceTree = "<group>"; };
-		D94681E31321CA4C00A1CBC1 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		D9282D011323A6B700CEC10D /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		D9282DF11323BEF200CEC10D /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		D9282DF21323BEF200CEC10D /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		D9282DF31323BEF200CEC10D /* HelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
+		D9282E0F1323C52F00CEC10D /* help-images.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "help-images.plist"; sourceTree = "<group>"; };
+		D9282E451323E3E200CEC10D /* HelpPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPageViewController.h; sourceTree = "<group>"; };
+		D9282E461323E3E200CEC10D /* HelpPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPageViewController.m; sourceTree = "<group>"; };
+		D9282E471323E3E200CEC10D /* HelpPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpPageViewController.xib; sourceTree = "<group>"; };
+		D9282FC91324016500CEC10D /* help_add_incident.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help_add_incident.png; sourceTree = "<group>"; };
+		D9282FCA1324016500CEC10D /* help_details_incident.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help_details_incident.png; sourceTree = "<group>"; };
+		D9282FCB1324016500CEC10D /* help_incidents_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help_incidents_list.png; sourceTree = "<group>"; };
+		D9282FCC1324016500CEC10D /* help_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help_light.png; sourceTree = "<group>"; };
+		D9282FCD1324016500CEC10D /* help_main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help_main.png; sourceTree = "<group>"; };
+		D9282FCE1324016500CEC10D /* help_others.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help_others.png; sourceTree = "<group>"; };
+		D9282FCF1324016500CEC10D /* help_transporters.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help_transporters.png; sourceTree = "<group>"; };
 		D94EF93D1321757C00EB7774 /* CurrentIncidentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentIncidentsViewController.h; sourceTree = "<group>"; };
 		D94EF93E1321757C00EB7774 /* CurrentIncidentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentIncidentsViewController.m; sourceTree = "<group>"; };
 		D94EF942132176AD00EB7774 /* HourIncidentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HourIncidentsViewController.h; sourceTree = "<group>"; };
@@ -108,6 +137,10 @@
 		D94EF9DE1321A9FF00EB7774 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		D9597346131AD23200953BA7 /* btn_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_big.png; sourceTree = "<group>"; };
 		D9597347131AD23200953BA7 /* btn_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_small.png; sourceTree = "<group>"; };
+		D961CB0513237F320055A5F4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D961CB0B13237FA20055A5F4 /* LightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightViewController.h; sourceTree = "<group>"; };
+		D961CB0C13237FA20055A5F4 /* LightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightViewController.m; sourceTree = "<group>"; };
+		D961CCB6132384BB0055A5F4 /* LightViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LightViewController.xib; sourceTree = "<group>"; };
 		D96252BC13195E5000BF99AF /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
 		D962530513196B5900BF99AF /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.json; sourceTree = "<group>"; };
 		D962530613196E5700BF99AF /* template.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = template.json; sourceTree = "<group>"; };
@@ -127,11 +160,11 @@
 		D9A1C4861322FC090022AB13 /* light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = light.png; sourceTree = "<group>"; };
 		D9A1C4C113230BC10022AB13 /* WebListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebListViewController.h; sourceTree = "<group>"; };
 		D9A1C4C213230BC10022AB13 /* WebListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebListViewController.m; sourceTree = "<group>"; };
-		D9A1C4C313230BC10022AB13 /* WebListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WebListViewController.xib; path = Classes/WebListViewController.xib; sourceTree = "<group>"; };
+		D9A1C4C313230BC10022AB13 /* WebListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebListViewController.xib; sourceTree = "<group>"; };
 		D9A1C4DA13230C780022AB13 /* websites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = websites.plist; sourceTree = "<group>"; };
 		D9A1C4DC13230EDE0022AB13 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		D9A1C4DD13230EDE0022AB13 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
-		D9A1C4DE13230EDE0022AB13 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WebViewController.xib; path = Classes/WebViewController.xib; sourceTree = "<group>"; };
+		D9A1C4DE13230EDE0022AB13 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		D9E2F87913185ED200948F2F /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		D9E2F87A13185ED200948F2F /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSON.h"; sourceTree = "<group>"; };
 		D9E2F87B13185ED200948F2F /* NSObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSON.m"; sourceTree = "<group>"; };
@@ -153,10 +186,10 @@
 		D9E2F88B13185ED300948F2F /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		D9E2F9641318841800948F2F /* IncidentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncidentDetailViewController.h; sourceTree = "<group>"; };
 		D9E2F9651318841800948F2F /* IncidentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncidentDetailViewController.m; sourceTree = "<group>"; };
-		D9E2F9661318841800948F2F /* IncidentDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IncidentDetailViewController.xib; path = Classes/IncidentDetailViewController.xib; sourceTree = "<group>"; };
+		D9E2F9661318841800948F2F /* IncidentDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncidentDetailViewController.xib; sourceTree = "<group>"; };
 		D9E2FA9E1319502900948F2F /* IncidentAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncidentAddViewController.h; sourceTree = "<group>"; };
 		D9E2FA9F1319502900948F2F /* IncidentAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncidentAddViewController.m; sourceTree = "<group>"; };
-		D9E2FAA01319502900948F2F /* IncidentAddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IncidentAddViewController.xib; path = Classes/IncidentAddViewController.xib; sourceTree = "<group>"; };
+		D9E2FAA01319502900948F2F /* IncidentAddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncidentAddViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +200,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+				D961CB0613237F320055A5F4 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +230,12 @@
 				D9A1C4C213230BC10022AB13 /* WebListViewController.m */,
 				D9A1C4DC13230EDE0022AB13 /* WebViewController.h */,
 				D9A1C4DD13230EDE0022AB13 /* WebViewController.m */,
+				D961CB0B13237FA20055A5F4 /* LightViewController.h */,
+				D961CB0C13237FA20055A5F4 /* LightViewController.m */,
+				D9282DF11323BEF200CEC10D /* HelpViewController.h */,
+				D9282DF21323BEF200CEC10D /* HelpViewController.m */,
+				D9282E451323E3E200CEC10D /* HelpPageViewController.h */,
+				D9282E461323E3E200CEC10D /* HelpPageViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -211,7 +251,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				D9597344131AD22100953BA7 /* Images */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -236,23 +275,28 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D9597344131AD22100953BA7 /* Images */,
 				D94EF9DB1321A9FF00EB7774 /* Icon-Small.png */,
 				D94EF9DC1321A9FF00EB7774 /* Icon-Small@2x.png */,
 				D94EF9DD1321A9FF00EB7774 /* Icon.png */,
 				D94EF9DE1321A9FF00EB7774 /* Icon@2x.png */,
+				D9282E471323E3E200CEC10D /* HelpPageViewController.xib */,
+				D9282DF31323BEF200CEC10D /* HelpViewController.xib */,
 				D9A1C4DE13230EDE0022AB13 /* WebViewController.xib */,
 				D9A1C4C313230BC10022AB13 /* WebListViewController.xib */,
 				D9E2FAA01319502900948F2F /* IncidentAddViewController.xib */,
 				D9E2F9661318841800948F2F /* IncidentDetailViewController.xib */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
+				D961CCB6132384BB0055A5F4 /* LightViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
-				8D1107310486CEB800E47090 /* iMLate-Info.plist */,
 				D962530513196B5900BF99AF /* data.json */,
 				D962530613196E5700BF99AF /* template.json */,
+				8D1107310486CEB800E47090 /* iMLate-Info.plist */,
 				D96255471319DA7600BF99AF /* transport-lines.plist */,
 				D913A54B131A5A2F0019B379 /* transport-means.plist */,
-				D94681E31321CA4C00A1CBC1 /* Entitlements.plist */,
 				D9A1C4DA13230C780022AB13 /* websites.plist */,
+				D9282D011323A6B700CEC10D /* Entitlements.plist */,
+				D9282E0F1323C52F00CEC10D /* help-images.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -263,6 +307,7 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+				D961CB0513237F320055A5F4 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -270,6 +315,13 @@
 		D9597344131AD22100953BA7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D9282FC91324016500CEC10D /* help_add_incident.png */,
+				D9282FCA1324016500CEC10D /* help_details_incident.png */,
+				D9282FCB1324016500CEC10D /* help_incidents_list.png */,
+				D9282FCC1324016500CEC10D /* help_light.png */,
+				D9282FCD1324016500CEC10D /* help_main.png */,
+				D9282FCE1324016500CEC10D /* help_others.png */,
+				D9282FCF1324016500CEC10D /* help_transporters.png */,
 				D9A1C4841322FC090022AB13 /* icon_light.png */,
 				D9A1C4851322FC090022AB13 /* icon_light@2x.png */,
 				D9A1C4861322FC090022AB13 /* light.png */,
@@ -419,6 +471,17 @@
 				D9A1C4C513230BC10022AB13 /* WebListViewController.xib in Resources */,
 				D9A1C4DB13230C780022AB13 /* websites.plist in Resources */,
 				D9A1C4E013230EDE0022AB13 /* WebViewController.xib in Resources */,
+				D961CCB7132384BB0055A5F4 /* LightViewController.xib in Resources */,
+				D9282DF51323BEF200CEC10D /* HelpViewController.xib in Resources */,
+				D9282E101323C52F00CEC10D /* help-images.plist in Resources */,
+				D9282E491323E3E200CEC10D /* HelpPageViewController.xib in Resources */,
+				D9282FD01324016500CEC10D /* help_add_incident.png in Resources */,
+				D9282FD11324016500CEC10D /* help_details_incident.png in Resources */,
+				D9282FD21324016500CEC10D /* help_incidents_list.png in Resources */,
+				D9282FD31324016500CEC10D /* help_light.png in Resources */,
+				D9282FD41324016500CEC10D /* help_main.png in Resources */,
+				D9282FD51324016500CEC10D /* help_others.png in Resources */,
+				D9282FD61324016500CEC10D /* help_transporters.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +512,9 @@
 				D94EF949132176F900EB7774 /* DayIncidentsViewController.m in Sources */,
 				D9A1C4C413230BC10022AB13 /* WebListViewController.m in Sources */,
 				D9A1C4DF13230EDE0022AB13 /* WebViewController.m in Sources */,
+				D961CB0E13237FA20055A5F4 /* LightViewController.m in Sources */,
+				D9282DF41323BEF200CEC10D /* HelpViewController.m in Sources */,
+				D9282E481323E3E200CEC10D /* HelpPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,16 +525,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/Documents/incidents-transports/Entitlements.plist";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iMLate_Prefix.pch;
 				INFOPLIST_FILE = "iMLate-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = iMLate;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
 		};
@@ -476,11 +543,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/Documents/incidents-transports/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/iMLate/incidents-transports/Entitlements.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iMLate_Prefix.pch;
 				INFOPLIST_FILE = "iMLate-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = iMLate;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -518,10 +586,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
@@ -532,7 +602,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/Documents/incidents-transports/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/iMLate/incidents-transports/Entitlements.plist";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
