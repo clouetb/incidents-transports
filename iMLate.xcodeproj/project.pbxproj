@@ -65,6 +65,12 @@
 		D9A1C4DB13230C780022AB13 /* websites.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9A1C4DA13230C780022AB13 /* websites.plist */; };
 		D9A1C4DF13230EDE0022AB13 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A1C4DD13230EDE0022AB13 /* WebViewController.m */; };
 		D9A1C4E013230EDE0022AB13 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A1C4DE13230EDE0022AB13 /* WebViewController.xib */; };
+		D9A45AA51324453C004ED0BB /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A45AA31324453C004ED0BB /* AboutViewController.m */; };
+		D9A45AA61324453C004ED0BB /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A45AA41324453C004ED0BB /* AboutViewController.xib */; };
+		D9CCC7AD1324473F00BD0780 /* about.txt in Resources */ = {isa = PBXBuildFile; fileRef = D9CCC7AC1324473F00BD0780 /* about.txt */; };
+		D9CCC7E313244DB200BD0780 /* icon_information.png in Resources */ = {isa = PBXBuildFile; fileRef = D9CCC7E013244DB200BD0780 /* icon_information.png */; };
+		D9CCC7E413244DB200BD0780 /* icon_information@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9CCC7E113244DB200BD0780 /* icon_information@2x.png */; };
+		D9CCC7E513244DB200BD0780 /* information.png in Resources */ = {isa = PBXBuildFile; fileRef = D9CCC7E213244DB200BD0780 /* information.png */; };
 		D9E2F88C13185ED300948F2F /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E2F87B13185ED200948F2F /* NSObject+JSON.m */; };
 		D9E2F88D13185ED300948F2F /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E2F87D13185ED200948F2F /* SBJsonParser.m */; };
 		D9E2F88E13185ED300948F2F /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E2F87F13185ED300948F2F /* SBJsonStreamParser.m */; };
@@ -165,6 +171,13 @@
 		D9A1C4DC13230EDE0022AB13 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		D9A1C4DD13230EDE0022AB13 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		D9A1C4DE13230EDE0022AB13 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
+		D9A45AA21324453C004ED0BB /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		D9A45AA31324453C004ED0BB /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		D9A45AA41324453C004ED0BB /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		D9CCC7AC1324473F00BD0780 /* about.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = about.txt; sourceTree = "<group>"; };
+		D9CCC7E013244DB200BD0780 /* icon_information.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_information.png; sourceTree = "<group>"; };
+		D9CCC7E113244DB200BD0780 /* icon_information@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_information@2x.png"; sourceTree = "<group>"; };
+		D9CCC7E213244DB200BD0780 /* information.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = information.png; sourceTree = "<group>"; };
 		D9E2F87913185ED200948F2F /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		D9E2F87A13185ED200948F2F /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSON.h"; sourceTree = "<group>"; };
 		D9E2F87B13185ED200948F2F /* NSObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSON.m"; sourceTree = "<group>"; };
@@ -236,6 +249,8 @@
 				D9282DF21323BEF200CEC10D /* HelpViewController.m */,
 				D9282E451323E3E200CEC10D /* HelpPageViewController.h */,
 				D9282E461323E3E200CEC10D /* HelpPageViewController.m */,
+				D9A45AA21324453C004ED0BB /* AboutViewController.h */,
+				D9A45AA31324453C004ED0BB /* AboutViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -276,19 +291,16 @@
 			isa = PBXGroup;
 			children = (
 				D9597344131AD22100953BA7 /* Images */,
-				D94EF9DB1321A9FF00EB7774 /* Icon-Small.png */,
-				D94EF9DC1321A9FF00EB7774 /* Icon-Small@2x.png */,
-				D94EF9DD1321A9FF00EB7774 /* Icon.png */,
-				D94EF9DE1321A9FF00EB7774 /* Icon@2x.png */,
-				D9282E471323E3E200CEC10D /* HelpPageViewController.xib */,
-				D9282DF31323BEF200CEC10D /* HelpViewController.xib */,
-				D9A1C4DE13230EDE0022AB13 /* WebViewController.xib */,
-				D9A1C4C313230BC10022AB13 /* WebListViewController.xib */,
-				D9E2FAA01319502900948F2F /* IncidentAddViewController.xib */,
-				D9E2F9661318841800948F2F /* IncidentDetailViewController.xib */,
-				28F335F01007B36200424DE2 /* RootViewController.xib */,
-				D961CCB6132384BB0055A5F4 /* LightViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
+				28F335F01007B36200424DE2 /* RootViewController.xib */,
+				D9E2F9661318841800948F2F /* IncidentDetailViewController.xib */,
+				D9E2FAA01319502900948F2F /* IncidentAddViewController.xib */,
+				D9A1C4C313230BC10022AB13 /* WebListViewController.xib */,
+				D9A1C4DE13230EDE0022AB13 /* WebViewController.xib */,
+				D9282DF31323BEF200CEC10D /* HelpViewController.xib */,
+				D9282E471323E3E200CEC10D /* HelpPageViewController.xib */,
+				D961CCB6132384BB0055A5F4 /* LightViewController.xib */,
+				D9A45AA41324453C004ED0BB /* AboutViewController.xib */,
 				D962530513196B5900BF99AF /* data.json */,
 				D962530613196E5700BF99AF /* template.json */,
 				8D1107310486CEB800E47090 /* iMLate-Info.plist */,
@@ -297,6 +309,7 @@
 				D9A1C4DA13230C780022AB13 /* websites.plist */,
 				D9282D011323A6B700CEC10D /* Entitlements.plist */,
 				D9282E0F1323C52F00CEC10D /* help-images.plist */,
+				D9CCC7AC1324473F00BD0780 /* about.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -315,6 +328,11 @@
 		D9597344131AD22100953BA7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D9CCC7E213244DB200BD0780 /* information.png */,
+				D94EF9DB1321A9FF00EB7774 /* Icon-Small.png */,
+				D94EF9DC1321A9FF00EB7774 /* Icon-Small@2x.png */,
+				D94EF9DD1321A9FF00EB7774 /* Icon.png */,
+				D94EF9DE1321A9FF00EB7774 /* Icon@2x.png */,
 				D9282FC91324016500CEC10D /* help_add_incident.png */,
 				D9282FCA1324016500CEC10D /* help_details_incident.png */,
 				D9282FCB1324016500CEC10D /* help_incidents_list.png */,
@@ -331,6 +349,8 @@
 				D9A1C47B1322FA800022AB13 /* icon_earth@2x.png */,
 				D9A1C47C1322FA800022AB13 /* icon_help.png */,
 				D9A1C47D1322FA800022AB13 /* icon_help@2x.png */,
+				D9CCC7E013244DB200BD0780 /* icon_information.png */,
+				D9CCC7E113244DB200BD0780 /* icon_information@2x.png */,
 				D94EF9D81321A9FF00EB7774 /* icon_template_button.png */,
 				D94EF9D91321A9FF00EB7774 /* icon_template_train.png */,
 				D94EF9DA1321A9FF00EB7774 /* icon_template.png */,
@@ -482,6 +502,11 @@
 				D9282FD41324016500CEC10D /* help_main.png in Resources */,
 				D9282FD51324016500CEC10D /* help_others.png in Resources */,
 				D9282FD61324016500CEC10D /* help_transporters.png in Resources */,
+				D9A45AA61324453C004ED0BB /* AboutViewController.xib in Resources */,
+				D9CCC7AD1324473F00BD0780 /* about.txt in Resources */,
+				D9CCC7E313244DB200BD0780 /* icon_information.png in Resources */,
+				D9CCC7E413244DB200BD0780 /* icon_information@2x.png in Resources */,
+				D9CCC7E513244DB200BD0780 /* information.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +540,7 @@
 				D961CB0E13237FA20055A5F4 /* LightViewController.m in Sources */,
 				D9282DF41323BEF200CEC10D /* HelpViewController.m in Sources */,
 				D9282E481323E3E200CEC10D /* HelpPageViewController.m in Sources */,
+				D9A45AA51324453C004ED0BB /* AboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

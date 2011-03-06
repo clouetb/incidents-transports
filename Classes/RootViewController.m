@@ -49,6 +49,7 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Connexion impossible au serveur" 
 												   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
+	[alert release];
 	[responseData release];
 	
 	[MBProgressHUD hideHUDForView:self.view animated:YES];
