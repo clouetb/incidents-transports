@@ -31,6 +31,7 @@
 
 // Server Host Constant
 #define INCIDENT_SERVER_HOST @"incidentsServerHost"
+
 // REST Action all
 #define REST_ACTION_HOUR @"hour"
 // REST Action all

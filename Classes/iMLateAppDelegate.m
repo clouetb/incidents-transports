@@ -25,7 +25,8 @@
     // Override point for customization after application launch.
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; 
 	if (![defaults stringForKey:INCIDENT_SERVER_HOST]){
-		NSDictionary *dict = [NSDictionary dictionaryWithObject:@"incidents-transports.com" forKey:INCIDENT_SERVER_HOST];
+		NSString *value = INCIDENT_SERVER_HOST_VALUE;
+		NSDictionary *dict = [NSDictionary dictionaryWithObject:value forKey:INCIDENT_SERVER_HOST];
 		[[NSUserDefaults standardUserDefaults] registerDefaults:dict];
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	}

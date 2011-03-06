@@ -20,7 +20,7 @@
 			<key>Key</key>
 			<string>incidentsServerHost</string>
 			<key>DefaultValue</key>
-			<string>incidents-transports.com</string>
+			<string>openreact.alwaysdata.net</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>

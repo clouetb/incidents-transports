@@ -40,7 +40,7 @@
 	NSData *result;
 	NSError *error = nil;
 	NSURL *URL;
-		// Build the URL depending on the button pressed and on the incident ID
+	// Build the URL depending on the button pressed and on the incident ID
 	NSString *URLString = [[NSString alloc] initWithFormat:@"http://%@/incident/action/%@/%@", 
 			  [[NSUserDefaults standardUserDefaults] objectForKey:INCIDENT_SERVER_HOST],
 			  [incident objectForKey:UID],

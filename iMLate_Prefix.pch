@@ -14,3 +14,9 @@
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
 #endif
+
+#if TARGET_IPHONE_SIMULATOR
+	#define INCIDENT_SERVER_HOST_VALUE (@"openreact.alwaysdata.net")
+#else
+	#define INCIDENT_SERVER_HOST_VALUE (@"incident-transports.com")
+#endif
