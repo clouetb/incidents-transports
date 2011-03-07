@@ -21,6 +21,7 @@
 	NSMutableArray *incidentsList;
 	NSMutableData *responseData;
 	NSURLConnection *connection;
+	CFTimeInterval lastRefresh;
 }
 
 @property (nonatomic, retain) NSArray *incidentsList;

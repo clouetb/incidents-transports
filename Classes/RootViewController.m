@@ -86,11 +86,15 @@
 	// Stop the activity indicator
 	[MBProgressHUD hideHUDForView:self.view animated:YES];
 	self.navigationItem.leftBarButtonItem = self.refreshButtonItem;
+	// Store the time of the last refresh
+	lastRefresh = CFAbsoluteTimeGetCurrent();
 }
 
 // Triggered when the view is about to appear
 - (void)viewDidLoad {
     [super viewDidLoad];
+	// Set the last refresh to 0 so that first display triggers a request
+	lastRefresh = 0;	
 	// Put a small button with a small + sign and the refresh button
 	self.navigationItem.rightBarButtonItem = self.addButtonItem;
 	self.navigationItem.leftBarButtonItem = self.refreshButtonItem;
@@ -101,8 +105,17 @@
 // Reload data when it can have been modified
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	// Load the incident from the website
-	[self initAndLaunchAsyncRequest];
+	
+	// Only trigger request if incidentsList is older than MINIMUM_TIME_INTERVAL_BETWEEN_2_REFRESH
+	CFTimeInterval currentTime = CFAbsoluteTimeGetCurrent();
+	if ((currentTime - lastRefresh) > MINIMUM_TIME_INTERVAL_BETWEEN_2_REFRESH) {
+		LogDebug(@"Last refresh %d seconds ago", currentTime - lastRefresh);
+		// Load the incident from the website
+		[self initAndLaunchAsyncRequest];
+	} else {
+		LogDebug(@"Last refresh %d seconds ago no refresh needed", currentTime - lastRefresh);
+	}
+
 }
 
 #pragma mark -
@@ -172,7 +185,6 @@
 	LogDebug(@"Add button pressed");
 	// Create the add view dialog
 	IncidentAddViewController *addViewController = [[IncidentAddViewController alloc] initWithNibName:@"IncidentAddViewController" bundle:nil];
-	
 	// Bind the view dialog to a freshly created navigation controller
 	UINavigationController *addNavigationController = [[UINavigationController alloc] initWithRootViewController:addViewController];
 	

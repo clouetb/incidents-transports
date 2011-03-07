@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JSON.h"
 #import "MBProgressHUD.h"
+#import "RootViewController.h"
 
 @interface IncidentAddViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {
 	NSArray *types;
@@ -21,6 +22,7 @@
 	IBOutlet UITextField *lineField;
 	IBOutlet UITextField *bgField;
 	CGFloat animatedDistance;
+	CFTimeInterval startTime;
 	NSMutableData *responseData;
 }
 

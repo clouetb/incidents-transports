@@ -35,6 +35,9 @@
 	NSURL *URL;
 	NSMutableDictionary *incidentValues;
 	
+	// Store the time at the start of the operation
+	startTime = CFAbsoluteTimeGetCurrent();
+	
 	// Display an activity indicator
 	[MBProgressHUD showHUDAddedTo:self.view.superview.superview.superview animated:YES];
 	SBJsonWriter *json = [SBJsonWriter new];
@@ -94,7 +97,10 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
 	LogError(@"%@", [error localizedDescription]);
-	
+	// If time elapsed since beginning of operation is less than SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR sleep a bit
+	CFTimeInterval difference = CFAbsoluteTimeGetCurrent() - startTime;
+	if (difference < SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR)
+		[NSThread sleepForTimeInterval:SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR - difference];
 	[MBProgressHUD hideHUDForView:self.view.superview.superview.superview animated:YES];
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de soumettre l'incident" 
@@ -107,6 +113,10 @@
 	// Build a string from the result
 	NSString *string = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
 	LogDebug (@"%@", string);
+	// If time elapsed since beginning of operation is less than SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR sleep a bit
+	CFTimeInterval difference = CFAbsoluteTimeGetCurrent() - startTime;
+	if (difference < SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR)
+		[NSThread sleepForTimeInterval:SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR - difference];
 	[MBProgressHUD hideHUDForView:self.view.superview.superview.superview animated:YES];
 	if (![string isEqualToString:@"Created"]) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de soumettre l'incident" 

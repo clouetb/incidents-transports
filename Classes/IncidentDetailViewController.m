@@ -40,6 +40,8 @@
 	NSData *result;
 	NSError *error = nil;
 	NSURL *URL;
+	// Store the time at the start of the operation
+	CFTimeInterval startTime = CFAbsoluteTimeGetCurrent();
 	// Build the URL depending on the button pressed and on the incident ID
 	NSString *URLString = [[NSString alloc] initWithFormat:@"http://%@/incident/action/%@/%@", 
 			  [[NSUserDefaults standardUserDefaults] objectForKey:INCIDENT_SERVER_HOST],
@@ -56,6 +58,11 @@
 	
 	// Execute and build a string from the result
 	result = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
+	// If time elapsed since beginning of operation is less than SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR sleep a bit
+	CFTimeInterval difference = CFAbsoluteTimeGetCurrent() - startTime;
+	if (difference < SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR)
+		[NSThread sleepForTimeInterval:SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR - difference];
+	
 	NSString *string = [[[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding] autorelease];
 	LogDebug (@"%@", string);
 	
