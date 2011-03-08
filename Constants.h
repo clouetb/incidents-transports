@@ -44,4 +44,4 @@
 // Time interval between 2 requests to the server
 #define MINIMUM_TIME_INTERVAL_BETWEEN_2_REFRESH 180
 // Minimum time the activity indicator will be displayed
-#define SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR 3
+#define SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR 1

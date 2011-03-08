@@ -11,7 +11,7 @@
 
 @implementation IncidentAddViewController
 
-@synthesize types, lines, selectedType, transportData, picker, incidentText, lineField, bgField;
+@synthesize types, lines, selectedType, transportData, picker, incidentText, lineField, bgField, delegate;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -34,6 +34,8 @@
 	NSString *lineValue;
 	NSURL *URL;
 	NSMutableDictionary *incidentValues;
+	[incidentText resignFirstResponder];
+	[lineField resignFirstResponder];
 	
 	// Store the time at the start of the operation
 	startTime = CFAbsoluteTimeGetCurrent();
@@ -125,9 +127,12 @@
 		return;
 	}
 	[self.navigationController dismissModalViewControllerAnimated:YES];
+	[delegate addViewControllerDidFinish];
 }
 
 - (void) cancel:(id)sender {
+	[incidentText resignFirstResponder];
+	[lineField resignFirstResponder];
 	LogDebug(@"Cancel pressed");
 	[self.navigationController dismissModalViewControllerAnimated:YES];
 }

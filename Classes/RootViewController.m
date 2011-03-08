@@ -188,11 +188,16 @@
 	// Bind the view dialog to a freshly created navigation controller
 	UINavigationController *addNavigationController = [[UINavigationController alloc] initWithRootViewController:addViewController];
 	
+	addViewController.delegate = self;
 	// Push the view for a new incident
 	[self presentModalViewController:addNavigationController animated:YES];
 }
 
-- (IBAction) refreshButtonPressed: (id)sender{
+- (void) addViewControllerDidFinish {
+	[self initAndLaunchAsyncRequest];
+}
+
+- (IBAction) refreshButtonPressed: (id)sender {
 	[self initAndLaunchAsyncRequest];
 }
 

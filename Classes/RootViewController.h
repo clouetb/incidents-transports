@@ -12,7 +12,7 @@
 #import "IncidentAddViewController.h"
 #import "MBProgressHUD.h"
 
-@interface RootViewController : UITableViewController {
+@interface RootViewController : UITableViewController <IncidentAddViewControllerDelegate> {
 	IBOutlet UIBarButtonItem *addButtonItem;
 	IBOutlet UIBarButtonItem *refreshButtonItem;
 	IBOutlet UIBarButtonItem *cancelButtonItem;

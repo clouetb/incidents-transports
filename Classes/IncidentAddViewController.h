@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "JSON.h"
 #import "MBProgressHUD.h"
-#import "RootViewController.h"
+
+@protocol IncidentAddViewControllerDelegate;
 
 @interface IncidentAddViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {
 	NSArray *types;
@@ -24,6 +25,8 @@
 	CGFloat animatedDistance;
 	CFTimeInterval startTime;
 	NSMutableData *responseData;
+	id <IncidentAddViewControllerDelegate> delegate;
+
 }
 
 @property (nonatomic, retain) NSArray *types;
@@ -34,6 +37,7 @@
 @property (nonatomic, retain) IBOutlet UITextView *incidentText;
 @property (nonatomic, retain) IBOutlet UITextField *lineField;
 @property (nonatomic, retain) IBOutlet UITextField *bgField;
+@property (nonatomic, assign) id <IncidentAddViewControllerDelegate> delegate;
 
 - (IBAction)textDoneEditing:(id) sender;
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
@@ -43,4 +47,10 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
+@end
+
+@protocol IncidentAddViewControllerDelegate <NSObject>
+
+- (void)addViewControllerDidFinish;
+
 @end
