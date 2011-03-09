@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IncidentAddViewController.h"
 
 @interface iMLateAppDelegate : NSObject <UIApplicationDelegate> {
     

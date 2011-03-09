@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.title = @"Sites transporteurs";
+	self.title = @"Web";
 	websites = [[NSDictionary alloc]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"websites" ofType:@"plist"]];
 	websitesNames = [[NSArray alloc] initWithArray:[websites allKeys] copyItems:YES];
 }

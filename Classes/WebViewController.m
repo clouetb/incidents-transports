@@ -10,7 +10,7 @@
 
 @implementation WebViewController
 
-@synthesize webView, urlAddress, website;
+@synthesize webView, urlAddress, website, activityIndicator;
 
 - (void)viewDidLoad {
 	self.title = website;
@@ -20,6 +20,9 @@
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 	//Load the request in the UIWebView.
 	[webView loadRequest:requestObj];
+	self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+	UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+	[self navigationItem].rightBarButtonItem = barButton;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,11 +37,21 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+	[self.activityIndicator stopAnimating];
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+	[self.activityIndicator stopAnimating];
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+	[self.activityIndicator startAnimating];
+}
 
 - (void)dealloc {
     [super dealloc];
 	[webView release];
 	[urlAddress release];
+	[activityIndicator release];
 }
 
 
