@@ -3,12 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>application-identifier</key>
-	<string>$(AppIdentifierPrefix)$(CFBundleIdentifier)</string>
+	<string>QN4DVR9CXQ.com.incidents-transports.iMLate</string>
 	<key>get-task-allow</key>
-	<true/>
+	<false/>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)$(CFBundleIdentifier)</string>
+		<string>QN4DVR9CXQ.com.incidents-transports.iMLate</string>
 	</array>
 </dict>
 </plist>
