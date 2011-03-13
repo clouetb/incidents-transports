@@ -79,7 +79,7 @@
 									<string key="NSResourceName">back.png</string>
 								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<float key="IBUIWidth">45</float>
+								<float key="IBUIWidth">35</float>
 								<reference key="IBUIToolbar" ref="363852291"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="936038584">
@@ -88,7 +88,7 @@
 									<string key="NSResourceName">forward.png</string>
 								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<float key="IBUIWidth">45</float>
+								<float key="IBUIWidth">35</float>
 								<reference key="IBUIToolbar" ref="363852291"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="76357317">
