@@ -55,6 +55,7 @@
 	
 	// Asynchronously execute request
 	[[[NSURLConnection alloc] initWithRequest:theRequest delegate:self] autorelease];
+    [URLString release];
 }
 
 // Vote for incident existing +1

@@ -29,7 +29,7 @@
         websiteReachable = YES;
     }
 	//Create a URL object.
-	NSURL *url = [NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://%@", urlAddress]];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", urlAddress]];
 	//URL Requst Object
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 	//Load the request in the UIWebView.
@@ -37,7 +37,6 @@
 	[webView loadRequest:requestObj];
 	self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [self navigationItem].rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
-    
 }
 
 - (void)didReceiveMemoryWarning {

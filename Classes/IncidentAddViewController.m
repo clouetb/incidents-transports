@@ -77,7 +77,7 @@
 			break;
 	}
 	[incidentValues setObject:lineValue forKey:LINE_NAME];
-	
+	[lineValue release];
 	[incidentValues setObject:@"iMLate" forKey:SOURCE];
 	LogDebug(@"Values : %@", [json stringWithObject:incidentValues]);
 	
@@ -87,6 +87,9 @@
 	
 	// Asynchronously execute request
 	[[[NSURLConnection alloc] initWithRequest:theRequest delegate:self] autorelease];
+    [incidentValues release];
+    [URLString release];
+    [json release];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -108,6 +111,7 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de soumettre l'incident" 
 												   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
+    [alert release];
 	[responseData release];
 }
 
@@ -127,6 +131,7 @@
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de soumettre l'incident" 
 													   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
+        [alert release];
 		return;
 	}
 	[self.navigationController dismissModalViewControllerAnimated:YES];

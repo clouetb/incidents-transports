@@ -39,6 +39,7 @@
 	[theRequest setHTTPMethod:@"GET"];
 	// Asynchronously execute request
 	connection = [[[NSURLConnection alloc] initWithRequest:theRequest delegate:self] autorelease];
+    [URLString release];
 	self.navigationItem.leftBarButtonItem = self.cancelButtonItem;
 }
 
@@ -86,13 +87,18 @@
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"La récupération de la liste des incidents a échoué" 
 													   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
+        [alert release];
 	} else {
 		incidentsList = tempArray;
+        [self.incidentsList retain];
 		[self.tableView reloadData];
+        
 	}
 	// Stop the activity indicator
 	[MBProgressHUD hideHUDForView:self.view animated:YES];
 	self.navigationItem.leftBarButtonItem = self.refreshButtonItem;
+    [json release];
+    [tempArray release];
 	// Store the time of the last refresh
 	lastRefresh = CFAbsoluteTimeGetCurrent();
 }
@@ -225,6 +231,7 @@
 	addViewController.delegate = self;
 	// Push the view for a new incident
 	[self presentModalViewController:addNavigationController animated:YES];
+    [addViewController release];
 }
 
 - (void) addViewControllerDidFinish {
