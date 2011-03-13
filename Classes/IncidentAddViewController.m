@@ -211,11 +211,9 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
 	switch (component) {
 		case 0:
-			LogDebug(@"Loading Mean %d", [types objectAtIndex:row]);
 			return [types objectAtIndex:row];
 			break;
 		case 1:
-			LogDebug(@"Loading Line %d", [[transportData objectForKey:selectedType] objectAtIndex:row]);
 			return [[transportData objectForKey:selectedType] objectAtIndex:row];
 			break;
 		default:
