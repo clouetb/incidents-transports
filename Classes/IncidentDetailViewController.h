@@ -15,7 +15,10 @@
 	IBOutlet UIButton *plusButton;
 	IBOutlet UIButton *minusButton;
 	IBOutlet UIButton *endButton;
+    UIButton *buttonToUpdate;
+    NSMutableData *responseData;
 	NSMutableDictionary *incident;
+    CFTimeInterval startTime;
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *dateTextField;
@@ -25,9 +28,12 @@
 @property (nonatomic, retain) IBOutlet UIButton *endButton;
 @property (nonatomic, retain) NSMutableDictionary *incident;
 
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
+
 - (IBAction) minusButtonPressed: (id)sender;
 - (IBAction) plusButtonPressed: (id)sender;
 - (IBAction) endButtonPressed: (id)sender;
-- (void)checkForError:(NSNumber *) numberOfVotes;
 
 @end

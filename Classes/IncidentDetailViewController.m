@@ -14,7 +14,7 @@
 
 - (void) viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	
+	responseData = [[NSMutableData alloc] init];
 	// Format the dates to be nicely displayed
 	NSDateFormatter *dateFormater = [[[NSDateFormatter alloc] init] autorelease];
 	[dateFormater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -34,14 +34,11 @@
 	
 }
 
-- (NSNumber *)voteForIncident:(NSString *)type {
+- (void)voteForIncident:(NSString *)type {
 	NSMutableURLRequest *theRequest;
-	NSURLResponse *theResponse;
-	NSData *result;
-	NSError *error = nil;
 	NSURL *URL;
 	// Store the time at the start of the operation
-	CFTimeInterval startTime = CFAbsoluteTimeGetCurrent();
+    startTime = CFAbsoluteTimeGetCurrent();
 	// Build the URL depending on the button pressed and on the incident ID
 	NSString *URLString = [[NSString alloc] initWithFormat:@"http://%@/incident/action/%@/%@", 
 			  [[NSUserDefaults standardUserDefaults] objectForKey:INCIDENT_SERVER_HOST],
@@ -56,18 +53,8 @@
 									 timeoutInterval:60.0];
 	[theRequest setHTTPMethod:@"GET"];
 	
-	// Execute and build a string from the result
-	result = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
-	// If time elapsed since beginning of operation is less than SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR sleep a bit
-	CFTimeInterval difference = CFAbsoluteTimeGetCurrent() - startTime;
-	if (difference < SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR)
-		[NSThread sleepForTimeInterval:SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR - difference];
-	
-	NSString *string = [[[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding] autorelease];
-	LogDebug (@"%@", string);
-	
-	// Return the value assigned by the server
-	return [NSNumber numberWithInteger:[string integerValue]];
+	// Asynchronously execute request
+	[[[NSURLConnection alloc] initWithRequest:theRequest delegate:self] autorelease];
 }
 
 // Vote for incident existing +1
@@ -78,18 +65,8 @@
 	NSString *plus = @"plus";
 	
 	// Trigger the request with correct parameters
-	NSNumber *numberOfPlus = [self voteForIncident:plus];
-	
-	[self checkForError:numberOfPlus];
-	
-	[MBProgressHUD hideHUDForView:self.view animated:YES];
-	// Update cached value
-	[incident setValue:numberOfPlus forKey:VOTE_PLUS];
-	LogDebug(@"Value %@", [incident objectForKey:VOTE_PLUS]);
-	
-	// Update 
-	[plusButton setTitle:[NSString stringWithFormat:@"+1\t(%@)", [incident objectForKey:VOTE_PLUS]]
-				 forState:UIControlStateNormal];
+    buttonToUpdate = plusButton;
+	[self voteForIncident:plus];
 }
 
 // Vote for incident not existing -1
@@ -98,14 +75,8 @@
 	[MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
 	NSString *minus = @"minus";
-	NSNumber *numberOfMinus = [self voteForIncident:minus];
-	
-	[self checkForError:numberOfMinus];
-	[MBProgressHUD hideHUDForView:self.view animated:YES];
-	[incident setValue:numberOfMinus forKey:VOTE_MINUS];
-	LogDebug(@"Value %@", [incident objectForKey:VOTE_MINUS]);
-	[minusButton setTitle:[NSString stringWithFormat:@"-1\t(%@)", [incident objectForKey:VOTE_MINUS]]
-				 forState:UIControlStateNormal];
+    buttonToUpdate = minusButton;
+	[self voteForIncident:minus];
 }
 
 // Vote for incident end
@@ -114,25 +85,10 @@
 	[MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
 	NSString *end = @"end";
-	NSNumber *numberOfEnd = [self voteForIncident:end];
-	
-	[self checkForError:numberOfEnd];
-	[MBProgressHUD hideHUDForView:self.view animated:YES];
-	[incident setValue:numberOfEnd forKey:VOTE_ENDED];
-	LogDebug(@"Value %@", [incident objectForKey:VOTE_ENDED]);
-	[endButton setTitle:[NSString stringWithFormat:@"Incident terminé\t(%@)", [incident objectForKey:VOTE_ENDED]]
-				 forState:UIControlStateNormal];
+    buttonToUpdate = endButton;
+    [self voteForIncident:end];
 }
 
-- (void)checkForError:(NSNumber *) numberOfVotes {
-	// If the result is still 0, there is an error.
-	if ([numberOfVotes intValue] == 0) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de soumettre le vote" 
-													   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
-		return;
-	}
-}
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];   
@@ -152,5 +108,71 @@
 	[incident release];
 }
 
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    [responseData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [responseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	LogError(@"%@", [error localizedDescription]);
+	// If time elapsed since beginning of operation is less than SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR sleep a bit
+	CFTimeInterval difference = CFAbsoluteTimeGetCurrent() - startTime;
+	if (difference < SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR)
+		[NSThread sleepForTimeInterval:SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR - difference];
+	[MBProgressHUD hideHUDForView:self.view animated:YES];
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de soumettre le vote" 
+												   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alert show];
+    [alert release];
+	[responseData release];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+	// Build a string from the result
+    LogDebug(@"%@", responseData);
+	NSString *string = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
+	LogDebug (@"%@", string);
+	// If time elapsed since beginning of operation is less than SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR sleep a bit
+	CFTimeInterval difference = CFAbsoluteTimeGetCurrent() - startTime;
+	if (difference < SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR)
+		[NSThread sleepForTimeInterval:SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR - difference];
+	[MBProgressHUD hideHUDForView:self.view animated:YES];
+	
+	// Return the value assigned by the server
+	int returnValue = [string integerValue];
+    if (returnValue != 0) {
+        if (buttonToUpdate == minusButton) {
+            [incident setValue:[NSNumber numberWithInt:returnValue] forKey:VOTE_MINUS];
+            LogDebug(@"Value %@", [incident objectForKey:VOTE_MINUS]);
+            [minusButton setTitle:[NSString stringWithFormat:@"-1\t(%@)", [incident objectForKey:VOTE_MINUS]]
+                         forState:UIControlStateNormal];
+            
+        }
+        if (buttonToUpdate == plusButton) {
+            // Update cached value
+            [incident setValue:[NSNumber numberWithInt:returnValue] forKey:VOTE_PLUS];
+            LogDebug(@"New plus value %@", [incident objectForKey:VOTE_PLUS]);
+            
+            // Update 
+            [plusButton setTitle:[NSString stringWithFormat:@"+1\t(%@)", [incident objectForKey:VOTE_PLUS]]
+                        forState:UIControlStateNormal];
+        }
+        if (buttonToUpdate == endButton) {
+            [incident setValue:[NSNumber numberWithInt:returnValue] forKey:VOTE_ENDED];
+            LogDebug(@"Value %@", [incident objectForKey:VOTE_ENDED]);
+            [endButton setTitle:[NSString stringWithFormat:@"Incident terminé\t(%@)", [incident objectForKey:VOTE_ENDED]]
+                       forState:UIControlStateNormal];
+        }
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de soumettre le vote" 
+                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+}
 
 @end

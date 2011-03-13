@@ -114,13 +114,16 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 	// Build a string from the result
 	NSString *string = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
-	LogDebug (@"%@", string);
+	LogDebug (@"Return received %@", string);
 	// If time elapsed since beginning of operation is less than SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR sleep a bit
 	CFTimeInterval difference = CFAbsoluteTimeGetCurrent() - startTime;
 	if (difference < SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR)
 		[NSThread sleepForTimeInterval:SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR - difference];
 	[MBProgressHUD hideHUDForView:self.view.superview.superview.superview animated:YES];
-	if (![string isEqualToString:@"Created"]) {
+    
+    int returnValue = [string integerValue];
+    
+	if (returnValue == 0) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de soumettre l'incident" 
 													   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
