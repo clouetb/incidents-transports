@@ -15,6 +15,13 @@
 
 // Fetch and allocs an array of incidents from the website
 - (void)initAndLaunchAsyncRequest {
+    if (!websiteReachable) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Impossible de contacter le serveur"
+                                message:[NSString stringWithFormat:@"iMLate ne peut contacter le serveur %@ parce que vous n'êtes pas connecté à internet", [[NSUserDefaults standardUserDefaults] stringForKey:INCIDENT_SERVER_HOST]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        return;
+    }
 	NSMutableURLRequest *theRequest;
 	self.navigationItem.leftBarButtonItem = self.cancelButtonItem;
 	
@@ -75,7 +82,7 @@
 	
 	// Check whether the parsing went smoothly
 	if (error) {
-		LogError(@"Erreur lors de la lecture du code JSON (%s).", [error localizedDescription]);
+		LogError(@"Erreur lors de la lecture du code JSON (%@).", [error localizedDescription]);
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"La récupération de la liste des incidents a échoué" 
 													   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
@@ -99,7 +106,34 @@
 	self.navigationItem.rightBarButtonItem = self.addButtonItem;
 	self.navigationItem.leftBarButtonItem = self.refreshButtonItem;
 	self.RESTAction = REST_ACTION_ALL;
+    // Register for reachability changes
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
+    hostReach = [[Reachability reachabilityWithHostName:
+                                [[NSUserDefaults standardUserDefaults] 
+                                 objectForKey:INCIDENT_SERVER_HOST]] retain];
+    NetworkStatus status = [hostReach currentReachabilityStatus];
+    if (status == NotReachable) {
+        websiteReachable = NO;
+    } else {
+        websiteReachable = YES;
+    }
+	[hostReach startNotifier];
+
 	self.displayFormat = @"dd/MM HH:mm";
+}
+
+- (void) reachabilityChanged: (NSNotification* )note {
+    LogDebug(@"******");
+	Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+    if (curReach == hostReach){
+        NetworkStatus status = [curReach currentReachabilityStatus];
+        if (status == NotReachable) {
+            websiteReachable = NO;
+        } else {
+            websiteReachable = YES;
+        }
+    }
 }
 
 // Reload data when it can have been modified
@@ -109,11 +143,11 @@
 	// Only trigger request if incidentsList is older than MINIMUM_TIME_INTERVAL_BETWEEN_2_REFRESH
 	CFTimeInterval currentTime = CFAbsoluteTimeGetCurrent();
 	if ((currentTime - lastRefresh) > MINIMUM_TIME_INTERVAL_BETWEEN_2_REFRESH) {
-		LogDebug(@"Last refresh %d seconds ago", currentTime - lastRefresh);
+		LogDebug(@"Last refresh %f seconds ago", currentTime - lastRefresh);
 		// Load the incident from the website
 		[self initAndLaunchAsyncRequest];
 	} else {
-		LogDebug(@"Last refresh %d seconds ago no refresh needed", currentTime - lastRefresh);
+		LogDebug(@"Last refresh %f seconds ago no refresh needed", currentTime - lastRefresh);
 	}
 
 }

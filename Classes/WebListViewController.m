@@ -64,6 +64,7 @@
 	WebViewController *webViewController = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
 	webViewController.urlAddress = [[NSString alloc] initWithString:[websites objectForKey:[websitesNames objectAtIndex:indexPath.row]]];
 	webViewController.website = [[NSString alloc] initWithString:[websitesNames objectAtIndex:indexPath.row]];
+    webViewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:webViewController animated:YES];
     [webViewController release];
 }

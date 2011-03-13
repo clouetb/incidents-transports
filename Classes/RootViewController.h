@@ -11,6 +11,7 @@
 #import "IncidentDetailViewController.h"
 #import "IncidentAddViewController.h"
 #import "MBProgressHUD.h"
+#import "Reachability.h"
 
 @interface RootViewController : UITableViewController <IncidentAddViewControllerDelegate> {
 	IBOutlet UIBarButtonItem *addButtonItem;
@@ -22,6 +23,8 @@
 	NSMutableData *responseData;
 	NSURLConnection *connection;
 	CFTimeInterval lastRefresh;
+    Reachability* hostReach;
+    BOOL websiteReachable;
 }
 
 @property (nonatomic, retain) NSArray *incidentsList;
