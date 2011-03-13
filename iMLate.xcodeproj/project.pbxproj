@@ -585,6 +585,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Benoit Clouet";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -598,6 +599,7 @@
 				INFOPLIST_FILE = "iMLate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = iMLate;
+				PROVISIONING_PROFILE = "B1BDD177-FE5A-44BF-B578-B777DC9D0C92";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = NO;
 			};
@@ -608,6 +610,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "~/Documents/iMLate/incidents-transports/Entitlements.plist";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Benoit Clouet";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -618,6 +621,7 @@
 				INFOPLIST_FILE = "iMLate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = iMLate;
+				PROVISIONING_PROFILE = "B1BDD177-FE5A-44BF-B578-B777DC9D0C92";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -626,6 +630,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -633,6 +638,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "";
 				PREBINDING = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -649,7 +655,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "B1BDD177-FE5A-44BF-B578-B777DC9D0C92";
+				PROVISIONING_PROFILE = "B6F9BC2E-8D52-4824-A78F-8131BD6F08EC";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -659,13 +665,16 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Benoit Clouet";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Benoit Clouet";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
+				PROVISIONING_PROFILE = "B1BDD177-FE5A-44BF-B578-B777DC9D0C92";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B1BDD177-FE5A-44BF-B578-B777DC9D0C92";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -675,7 +684,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "~/Documents/iMLate/incidents-transports/Entitlements.plist";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Benoit Clouet";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Benoit Clouet";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -686,10 +696,53 @@
 				INFOPLIST_FILE = "iMLate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = iMLate;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "B1BDD177-FE5A-44BF-B578-B777DC9D0C92";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6F9BC2E-8D52-4824-A78F-8131BD6F08EC";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;
+		};
+		D9CF0B02132C6B1B0009D507 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Benoit Clouet";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Benoit Clouet";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				PROVISIONING_PROFILE = "B6F9BC2E-8D52-4824-A78F-8131BD6F08EC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6F9BC2E-8D52-4824-A78F-8131BD6F08EC";
+				SDKROOT = iphoneos;
+			};
+			name = AppStore;
+		};
+		D9CF0B03132C6B1B0009D507 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/iMLate/incidents-transports/Entitlements.plist";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Benoit Clouet";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Benoit Clouet";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iMLate_Prefix.pch;
+				INFOPLIST_FILE = "iMLate-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PRODUCT_NAME = iMLate;
+				PROVISIONING_PROFILE = "B1BDD177-FE5A-44BF-B578-B777DC9D0C92";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6F9BC2E-8D52-4824-A78F-8131BD6F08EC";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AppStore;
 		};
 /* End XCBuildConfiguration section */
 
@@ -700,6 +753,7 @@
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				D94681C91321C81D00A1CBC1 /* Distribution */,
+				D9CF0B03132C6B1B0009D507 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Distribution;
@@ -710,6 +764,7 @@
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
 				D94681C81321C81D00A1CBC1 /* Distribution */,
+				D9CF0B02132C6B1B0009D507 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Distribution;
