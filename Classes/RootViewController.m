@@ -59,7 +59,10 @@
 	[alert show];
 	[alert release];
 	[responseData release];
-	
+    
+    // Hide tableView and show a label if no incident
+    self.tableView.hidden = ([self.incidentsList count] == 0);
+    
 	[MBProgressHUD hideHUDForView:self.view animated:YES];
 	self.navigationItem.leftBarButtonItem = self.refreshButtonItem;
 }
@@ -92,8 +95,11 @@
 		incidentsList = tempArray;
         [self.incidentsList retain];
 		[self.tableView reloadData];
-        
 	}
+    
+    // Hide tableView and show a label if no incident
+    self.tableView.hidden = ([self.incidentsList count] == 0);
+    
 	// Stop the activity indicator
 	[MBProgressHUD hideHUDForView:self.view animated:YES];
 	self.navigationItem.leftBarButtonItem = self.refreshButtonItem;
