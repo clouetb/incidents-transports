@@ -28,6 +28,8 @@
 #define LAST_MODIFIED_TIME @"last_modified_time"
 // Source for an incident (required for submission)
 #define SOURCE @"source"
+// Status of an incident
+#define STATUS @"status"
 
 // Server Host Constant
 #define INCIDENT_SERVER_HOST @"incidentsServerHost"

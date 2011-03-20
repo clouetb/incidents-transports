@@ -46,7 +46,7 @@
 	
 	// Build the URL depending on the button pressed and on the incident ID
 	NSString *URLString = [[NSString alloc] initWithFormat:@"http://%@/api/incident", 
-			  [[NSUserDefaults standardUserDefaults] objectForKey:INCIDENT_SERVER_HOST]];
+                           [[NSUserDefaults standardUserDefaults] objectForKey:INCIDENT_SERVER_HOST]];
 	LogDebug(@"URL %@", URLString);
 	URL = [NSURL URLWithString:URLString];
 	LogDebug (@"%@", URL);
@@ -82,7 +82,7 @@
 	LogDebug(@"Values : %@", [json stringWithObject:incidentValues]);
 	
 	// Init data placeholder
-	responseData = [[NSMutableData data] retain];
+	responseData = [[NSMutableData alloc] init];
 	[theRequest setHTTPBody:[json dataWithObject:incidentValues]];
 	
 	// Asynchronously execute request
@@ -93,6 +93,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    responseHeader = [(NSHTTPURLResponse *)response retain];
     [responseData setLength:0];
 }
 
@@ -108,34 +109,52 @@
 		[NSThread sleepForTimeInterval:SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR - difference];
 	[MBProgressHUD hideHUDForView:self.view.superview.superview.superview animated:YES];
 	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de soumettre l'incident" 
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message: 
+                          [NSString stringWithFormat: @"Impossible de soumettre l'incident.\n%@", [error localizedDescription]] 
 												   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
     [alert release];
 	[responseData release];
+    [responseHeader release];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-	// Build a string from the result
-	NSString *string = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
-	LogDebug (@"Return received %@", string);
 	// If time elapsed since beginning of operation is less than SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR sleep a bit
 	CFTimeInterval difference = CFAbsoluteTimeGetCurrent() - startTime;
 	if (difference < SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR)
 		[NSThread sleepForTimeInterval:SECONDS_TO_DISPLAY_ACTIVITY_INDICATOR - difference];
 	[MBProgressHUD hideHUDForView:self.view.superview.superview.superview animated:YES];
-    
-    int returnValue = [string integerValue];
-    
-	if (returnValue == 0) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Impossible de soumettre l'incident" 
-													   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    int status = [responseHeader statusCode];
+    if (status == 201) {
+        // Build a string from the result
+        NSString *string = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
+        LogDebug (@"Return received %@", string);
+    } else if (status == 503) {
+        // Request has been throttled
+        NSDictionary *headers = [responseHeader allHeaderFields];
+        LogDebug(@"Throttle %@", headers);
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Trop de requêtes" message:[NSString stringWithFormat: @"Le serveur vous considère temporairement comme un spammeur.\nMerci d'attendre %@ secondes avant de voter ou de déclarer de nouveaux incidents.", [headers valueForKey:@"Retry-After"]] 
+            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
         [alert release];
+        [responseData release];
+        [responseHeader release];
+        return;
+    } else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:[NSString stringWithFormat: @"Impossible de soumettre l'incident.\nCode %d: %@", status,
+            [NSHTTPURLResponse localizedStringForStatusCode:status]] 
+            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+		[alert show];
+        [alert release];
+        [responseData release];
+        [responseHeader release];
 		return;
 	}
 	[self.navigationController dismissModalViewControllerAnimated:YES];
 	[delegate addViewControllerDidFinish];
+    [responseData release];
+    [responseHeader release];
 }
 
 - (void) cancel:(id)sender {
@@ -197,19 +216,19 @@
 			case 4:
 				self.lineField.enabled = YES;
 				self.lineField.keyboardType = UIKeyboardTypeNumberPad;
-				self.lineField.text = @"Précisez la ligne de bus";
+				self.lineField.text = @"Précisez la ligne de bus.";
 				break;
 			case 5:
 				self.lineField.enabled = YES;
 				self.lineField.keyboardType = UIKeyboardTypeDefault;
-				self.lineField.text = @"Saisissez la ligne affectée";
+				self.lineField.text = @"Saisissez la ligne affectée.";
 				break;
 			default:
 				self.lineField.enabled = NO;
 				self.lineField.text = @"";
 				break;
 		}
-
+        
 	}
 }
 

@@ -17,6 +17,7 @@
 	IBOutlet UIButton *endButton;
     UIButton *buttonToUpdate;
     NSMutableData *responseData;
+    NSHTTPURLResponse *responseHeader;
 	NSMutableDictionary *incident;
     CFTimeInterval startTime;
 }

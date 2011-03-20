@@ -21,7 +21,9 @@
     if (status == NotReachable) {
         websiteReachable = NO;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Impossible de contacter le serveur"
-                                                        message:[NSString stringWithFormat:@"iMLate ne peut contacter le serveur %@ parce que vous n'êtes pas connecté à internet", [[NSUserDefaults standardUserDefaults] stringForKey:INCIDENT_SERVER_HOST]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                        message:
+                              [NSString stringWithFormat:@"iMLate ne peut atteindre l'adresse %@ parce que vous n'êtes pas connecté à internet.", self.urlAddress] 
+                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
         return;
@@ -79,7 +81,9 @@
     LogDebug(@"Should start");
     if (!websiteReachable) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Impossible de contacter le serveur"
-                                                        message:[NSString stringWithFormat:@"iMLate ne peut contacter le serveur %@ parce que vous n'êtes pas connecté à internet", [[NSUserDefaults standardUserDefaults] stringForKey:INCIDENT_SERVER_HOST]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                        message:
+                              [NSString stringWithFormat:@"iMLate ne peut atteindre l'adresse %@ parce que vous n'êtes pas connecté à internet", self.urlAddress]
+                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
         return NO;

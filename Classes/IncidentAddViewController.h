@@ -25,6 +25,7 @@
 	CGFloat animatedDistance;
 	CFTimeInterval startTime;
 	NSMutableData *responseData;
+    NSHTTPURLResponse *responseHeader;
 	id <IncidentAddViewControllerDelegate> delegate;
 
 }

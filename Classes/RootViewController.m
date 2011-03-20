@@ -54,7 +54,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
 	LogError(@"%@", [error localizedDescription]);
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Connexion impossible au serveur" 
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:[NSString stringWithFormat: @"Connexion impossible au serveur\n%@", [error localizedDescription]] 
 												   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
 	[alert release];
@@ -87,7 +87,8 @@
 	// Check whether the parsing went smoothly
 	if (error) {
 		LogError(@"Erreur lors de la lecture du code JSON (%@).", [error localizedDescription]);
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"La récupération de la liste des incidents a échoué" 
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:[NSString stringWithFormat: @"Le serveur a renvoyé une réponse incorrecte.\n%@", [error localizedDescription]] 
+
 													   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
         [alert release];
