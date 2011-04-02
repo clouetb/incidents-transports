@@ -66,9 +66,34 @@
 			lineValue = [[NSString alloc] initWithFormat:@"%@ %@", 
 						 selectedType, 
 						 self.lineField.text];
+            LogDebug(@"LineValue=%@", lineValue);
+            if ([lineValue isEqualToString:@"Bus Précisez la ligne de bus."]) {
+                [MBProgressHUD hideHUDForView:self.view.superview.superview.superview animated:YES];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Précisez la ligne de bus." message:nil 
+                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+                [alert release];
+                [json release];
+                [URLString release];
+                [incidentValues release];
+                return;
+            }
 			break;
 		case 5:
 			lineValue = self.lineField.text;
+            LogDebug(@"LineValue=%@", lineValue);
+            if ([lineValue isEqualToString:@"Saisissez la ligne affectée."]) {
+                [MBProgressHUD hideHUDForView:self.view.superview.superview.superview animated:YES];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Saisissez la ligne affectée." message:nil 
+                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+                [alert release];
+                [json release];
+                [URLString release];
+                [incidentValues release];
+                return;
+            }
+
 			break;
 		default:
 			lineValue = [[NSString alloc] initWithFormat:@"%@ %@", 

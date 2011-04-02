@@ -18,5 +18,5 @@
 #if TARGET_IPHONE_SIMULATOR
 	#define INCIDENT_SERVER_HOST_VALUE (@"openreact.alwaysdata.net")
 #else
-	#define INCIDENT_SERVER_HOST_VALUE (@"incident-transports.com")
+	#define INCIDENT_SERVER_HOST_VALUE (@"incidents-transports.com")
 #endif
